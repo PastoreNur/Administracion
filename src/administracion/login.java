@@ -6,15 +6,21 @@
 
 package administracion;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author RM-PC
  */
 public class login extends javax.swing.JFrame {
-
+    
+    MySQL db = new MySQL();
+    
     /** Creates new form login */
     public login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -26,21 +32,64 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        ingresarBTN = new javax.swing.JButton();
+        contraTXT = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        usuarioTXT = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
+        setMinimumSize(new java.awt.Dimension(400, 340));
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ingresarBTN.setText("INGRESAR");
+        ingresarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ingresarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 100, 50));
+
+        contraTXT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        contraTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(contraTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 260, 50));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("CONTRASEÑA");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("NOMBRE DE USUARIO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
+
+        usuarioTXT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        usuarioTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(usuarioTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 260, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ingresarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBTNActionPerformed
+        String usuario = usuarioTXT.getText();
+        String contra = contraTXT.getText();
+        
+        try {
+            db.MySQLConnection();
+            db.validadUsuario(usuario, contra);
+        } catch (Exception ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_ingresarBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,6 +127,12 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField contraTXT;
+    private javax.swing.JButton ingresarBTN;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField usuarioTXT;
     // End of variables declaration//GEN-END:variables
 
 }
