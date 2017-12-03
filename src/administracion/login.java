@@ -45,7 +45,11 @@ public class login extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        ingresarBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ingresarBTN.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
         ingresarBTN.setText("INGRESAR");
+        ingresarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        ingresarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarBTNActionPerformed(evt);

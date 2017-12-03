@@ -38,27 +38,25 @@ public class MySQL {
     }
     
     //PARA VALIDAR EL USARIO
-    public boolean validadUsuario(String usu, String contra){
+    public void validadUsuario(String usu, String contra){
         try{
             Query = "SELECT * FROM acceso where nombre_usu='"+ usu +"'"+" and contra_usu='"+ contra+"';";
             Statement st = Conexion.createStatement();
             ResultSet rs = st.executeQuery(Query);
             
+            
             menu m = new menu();
             m.setVisible(true);
             
             if( rs.first() ){
-                return true;
             }
             else{
                 JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA NO VALIDOS");
-                return false;
             }
         }
         catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERRROR EN EL PROCEDIMIENTO", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
-            return false;
         }
     }
     //PARA INGRESAR EMPLEADO

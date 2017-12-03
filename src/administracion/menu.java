@@ -26,17 +26,62 @@ public class menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        datosBTN = new javax.swing.JButton();
+        antecedentesBTN = new javax.swing.JButton();
+        desempeñoBTN = new javax.swing.JButton();
+        admisionBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        datosBTN.setBackground(new java.awt.Color(204, 204, 204));
+        datosBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        datosBTN.setText("DATOS PERSONALES");
+        datosBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        datosBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        datosBTN.setFocusable(false);
+        getContentPane().add(datosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 180, 70));
+
+        antecedentesBTN.setBackground(new java.awt.Color(204, 204, 204));
+        antecedentesBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        antecedentesBTN.setText("ANTECEDENTES");
+        antecedentesBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        antecedentesBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        antecedentesBTN.setFocusable(false);
+        getContentPane().add(antecedentesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 180, 70));
+
+        desempeñoBTN.setBackground(new java.awt.Color(204, 204, 204));
+        desempeñoBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        desempeñoBTN.setText("DESEMPEÑO");
+        desempeñoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        desempeñoBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        desempeñoBTN.setFocusable(false);
+        getContentPane().add(desempeñoBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 180, 70));
+
+        admisionBTN.setBackground(new java.awt.Color(204, 204, 204));
+        admisionBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        admisionBTN.setText("DATOS DE ADMISION");
+        admisionBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        admisionBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        admisionBTN.setFocusable(false);
+        admisionBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admisionBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(admisionBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 180, 70));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo-login.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void admisionBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admisionBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admisionBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,6 +119,10 @@ public class menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admisionBTN;
+    private javax.swing.JButton antecedentesBTN;
+    private javax.swing.JButton datosBTN;
+    private javax.swing.JButton desempeñoBTN;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
