@@ -5,6 +5,24 @@
  */
 package administracion;
 
+import static administracion.MySQL.apellido;
+import static administracion.MySQL.direccion;
+import static administracion.MySQL.dui;
+import static administracion.MySQL.edad;
+import static administracion.MySQL.estado;
+import static administracion.MySQL.jefe;
+import static administracion.MySQL.nacio;
+import static administracion.MySQL.nit;
+import static administracion.MySQL.nombre;
+import static administracion.MySQL.remuneracion;
+import static administracion.MySQL.sexo;
+import static administracion.MySQL.tel;
+import static administracion.MySQL.tipo;
+import static administracion.MySQL.ultimaEmpresa;
+import static administracion.MySQL.ultimoCargo;
+import static administracion.MySQL.ultimoSueldo;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author RM-PC
@@ -35,28 +53,6 @@ public class menu extends javax.swing.JFrame {
         agregarBTN = new javax.swing.JButton();
         eliminarBTN = new javax.swing.JButton();
         datosPN = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        nombreTXT = new javax.swing.JTextField();
-        apellidoTXT = new javax.swing.JTextField();
-        sexoTXT = new javax.swing.JTextField();
-        direccionTXT = new javax.swing.JTextField();
-        nacionTXT = new javax.swing.JTextField();
-        duiTXT = new javax.swing.JTextField();
-        nitTXT = new javax.swing.JTextField();
-        estadoTXT = new javax.swing.JTextField();
-        tipoTXT = new javax.swing.JTextField();
-        telTXT = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        edadTXT = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,6 +67,11 @@ public class menu extends javax.swing.JFrame {
         datosBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         datosBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         datosBTN.setFocusable(false);
+        datosBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datosBTNActionPerformed(evt);
+            }
+        });
         getContentPane().add(datosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 130, 70));
 
         salirLB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar X.png"))); // NOI18N
@@ -80,7 +81,7 @@ public class menu extends javax.swing.JFrame {
                 salirLBMouseClicked(evt);
             }
         });
-        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, -1));
+        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, -1, -1));
 
         antecedentesBTN.setBackground(new java.awt.Color(102, 102, 102));
         antecedentesBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
@@ -89,6 +90,11 @@ public class menu extends javax.swing.JFrame {
         antecedentesBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         antecedentesBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         antecedentesBTN.setFocusable(false);
+        antecedentesBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                antecedentesBTNActionPerformed(evt);
+            }
+        });
         getContentPane().add(antecedentesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 130, 70));
 
         desempeñoBTN.setBackground(new java.awt.Color(102, 102, 102));
@@ -98,6 +104,11 @@ public class menu extends javax.swing.JFrame {
         desempeñoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         desempeñoBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         desempeñoBTN.setFocusable(false);
+        desempeñoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desempeñoBTNActionPerformed(evt);
+            }
+        });
         getContentPane().add(desempeñoBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 130, 70));
 
         admisionBTN.setBackground(new java.awt.Color(102, 102, 102));
@@ -120,6 +131,7 @@ public class menu extends javax.swing.JFrame {
         buscarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         buscarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarBTN.setFocusable(false);
+        buscarBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buscarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBTNActionPerformed(evt);
@@ -133,6 +145,7 @@ public class menu extends javax.swing.JFrame {
         agregarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         agregarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregarBTN.setFocusable(false);
+        agregarBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         agregarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarBTNActionPerformed(evt);
@@ -146,6 +159,7 @@ public class menu extends javax.swing.JFrame {
         eliminarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         eliminarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminarBTN.setFocusable(false);
+        eliminarBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eliminarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarBTNActionPerformed(evt);
@@ -154,108 +168,17 @@ public class menu extends javax.swing.JFrame {
         getContentPane().add(eliminarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 80, 60));
 
         datosPN.setBackground(new java.awt.Color(51, 51, 51));
-        datosPN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("TIPO DE SANGRE:");
-        datosPN.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 140, 30));
-
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("NOMBRES:");
-        datosPN.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 90, 20));
-
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("APELLIDOS:");
-        datosPN.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 20));
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("SEXO:");
-        datosPN.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 50, 20));
-
-        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("DUI:");
-        datosPN.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 40, 30));
-
-        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("NIT:");
-        datosPN.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 40, 30));
-
-        jLabel8.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("EDAD:");
-        datosPN.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 50, -1));
-
-        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("NACIONALIDAD:");
-        datosPN.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 30));
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("TELEFONO:");
-        datosPN.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 90, 30));
-
-        jLabel11.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("ESTADO CIVIL:");
-        datosPN.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 120, 30));
-
-        nombreTXT.setEditable(false);
-        datosPN.add(nombreTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 170, 40));
-
-        apellidoTXT.setEditable(false);
-        datosPN.add(apellidoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 170, 40));
-
-        sexoTXT.setEditable(false);
-        sexoTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sexoTXTActionPerformed(evt);
-            }
-        });
-        datosPN.add(sexoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 170, 40));
-
-        direccionTXT.setEditable(false);
-        direccionTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionTXTActionPerformed(evt);
-            }
-        });
-        datosPN.add(direccionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 170, 40));
-
-        nacionTXT.setEditable(false);
-        datosPN.add(nacionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, 40));
-
-        duiTXT.setEditable(false);
-        duiTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                duiTXTActionPerformed(evt);
-            }
-        });
-        datosPN.add(duiTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 170, 40));
-
-        nitTXT.setEditable(false);
-        datosPN.add(nitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 170, 40));
-
-        estadoTXT.setEditable(false);
-        datosPN.add(estadoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 170, 40));
-
-        tipoTXT.setEditable(false);
-        datosPN.add(tipoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 170, 40));
-
-        telTXT.setEditable(false);
-        datosPN.add(telTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 170, 40));
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("DIRECCION:");
-        datosPN.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 100, -1));
-        datosPN.add(edadTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 170, 40));
+        javax.swing.GroupLayout datosPNLayout = new javax.swing.GroupLayout(datosPN);
+        datosPN.setLayout(datosPNLayout);
+        datosPNLayout.setHorizontalGroup(
+            datosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+        );
+        datosPNLayout.setVerticalGroup(
+            datosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
 
         getContentPane().add(datosPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 710, 380));
 
@@ -266,7 +189,12 @@ public class menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void admisionBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admisionBTNActionPerformed
-        // TODO add your handling code here:
+        admicion a = new admicion();
+        a.setSize(700,370);
+        datosPN.removeAll();
+        datosPN.add(a, BorderLayout.CENTER);
+        datosPN.revalidate();
+        datosPN.repaint();
     }//GEN-LAST:event_admisionBTNActionPerformed
 
     private void salirLBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirLBMouseClicked
@@ -286,17 +214,52 @@ public class menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarBTNActionPerformed
 
-    private void sexoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sexoTXTActionPerformed
+    private void antecedentesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antecedentesBTNActionPerformed
+        antecedentes a = new antecedentes();
+        a.setSize(700,370);
+        datosPN.removeAll();
+        datosPN.add(a, BorderLayout.CENTER);
+        datosPN.revalidate();
+        datosPN.repaint();
+        
+        a.antiguoJefeTXT.setText(jefe);
+        a.remuneracionTXT.setText(String.valueOf(remuneracion));
+        a.empresaTXT.setText(ultimaEmpresa);
+        a.ultimocargoTXT.setText(ultimoCargo);
+        a.ultimoSueldoTXT.setText("$ "+String.valueOf(ultimoSueldo));
+        
+        
+    }//GEN-LAST:event_antecedentesBTNActionPerformed
 
-    private void direccionTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionTXTActionPerformed
+    private void datosBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosBTNActionPerformed
+        datosPersonales d = new datosPersonales();
+        d.setSize(700,370);
+        datosPN.removeAll();
+        datosPN.add(d, BorderLayout.CENTER);
+        datosPN.revalidate();
+        datosPN.repaint();
+        
+        d.nombreTXT.setText(nombre);
+        d.apellidoTXT.setText(apellido);
+        d.sexoTXT.setText(sexo);
+        d.edadTXT.setText(edad);
+        d.duiTXT.setText(dui);
+        d.nitTXT.setText(nit);
+        d.direccionTXT.setText(direccion);
+        d.nacionTXT.setText(nacio);
+        d.telTXT.setText(tel);
+        d.estadoTXT.setText(estado);
+        d.tipoTXT.setText(tipo);
+    }//GEN-LAST:event_datosBTNActionPerformed
 
-    private void duiTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duiTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_duiTXTActionPerformed
+    private void desempeñoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desempeñoBTNActionPerformed
+        desempeño d = new desempeño();
+        d.setSize(700,370);
+        datosPN.removeAll();
+        datosPN.add(d, BorderLayout.CENTER);
+        datosPN.revalidate();
+        datosPN.repaint();
+    }//GEN-LAST:event_desempeñoBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,34 +300,12 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton admisionBTN;
     private javax.swing.JButton agregarBTN;
     private javax.swing.JButton antecedentesBTN;
-    private javax.swing.JTextField apellidoTXT;
     private javax.swing.JButton buscarBTN;
     private javax.swing.JButton datosBTN;
     private javax.swing.JPanel datosPN;
     private javax.swing.JButton desempeñoBTN;
-    private javax.swing.JTextField direccionTXT;
-    private javax.swing.JTextField duiTXT;
-    private javax.swing.JTextField edadTXT;
     private javax.swing.JButton eliminarBTN;
-    private javax.swing.JTextField estadoTXT;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField nacionTXT;
-    private javax.swing.JTextField nitTXT;
-    private javax.swing.JTextField nombreTXT;
     private javax.swing.JLabel salirLB;
-    private javax.swing.JTextField sexoTXT;
-    private javax.swing.JTextField telTXT;
-    private javax.swing.JTextField tipoTXT;
     // End of variables declaration//GEN-END:variables
 }

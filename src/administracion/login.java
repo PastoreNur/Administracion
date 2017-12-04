@@ -34,11 +34,11 @@ public class login extends javax.swing.JFrame {
 
         ingresarBTN = new javax.swing.JButton();
         contraTXT = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         usuarioTXT = new javax.swing.JTextField();
         salirLB = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
@@ -47,7 +47,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ingresarBTN.setBackground(new java.awt.Color(255, 255, 255));
-        ingresarBTN.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
+        ingresarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         ingresarBTN.setText("INGRESAR");
         ingresarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         ingresarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -62,17 +62,8 @@ public class login extends javax.swing.JFrame {
         contraTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(contraTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 260, 50));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CONTRASEÑA");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("NOMBRE DE USUARIO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
         usuarioTXT.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         usuarioTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -87,7 +78,17 @@ public class login extends javax.swing.JFrame {
         });
         jPanel1.add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
+        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("NOMBRE DE USUARIO");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 190, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("CONTRASEÑA");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 120, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,8 +153,8 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contraTXT;
     private javax.swing.JButton ingresarBTN;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel salirLB;
     private javax.swing.JTextField usuarioTXT;
