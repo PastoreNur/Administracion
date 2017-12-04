@@ -55,6 +55,8 @@ public class menu extends javax.swing.JFrame {
         estadoTXT = new javax.swing.JTextField();
         tipoTXT = new javax.swing.JTextField();
         telTXT = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        edadTXT = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,8 +188,8 @@ public class menu extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("DIRECCION:");
-        datosPN.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 100, -1));
+        jLabel8.setText("EDAD:");
+        datosPN.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 50, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -249,7 +251,13 @@ public class menu extends javax.swing.JFrame {
         telTXT.setEditable(false);
         datosPN.add(telTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 170, 40));
 
-        getContentPane().add(datosPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 710, 350));
+        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("DIRECCION:");
+        datosPN.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 100, -1));
+        datosPN.add(edadTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 170, 40));
+
+        getContentPane().add(datosPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 710, 380));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo1.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 930, 660));
@@ -336,11 +344,13 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton desempeñoBTN;
     private javax.swing.JTextField direccionTXT;
     private javax.swing.JTextField duiTXT;
+    private javax.swing.JTextField edadTXT;
     private javax.swing.JButton eliminarBTN;
     private javax.swing.JTextField estadoTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
