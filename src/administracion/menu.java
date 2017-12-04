@@ -271,6 +271,7 @@ public class menu extends javax.swing.JFrame {
 
     private void agregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBTNActionPerformed
         // TODO add your handling code here:
+        //db.ingresarEmpleado(nombreTXT.getText(), apellidoTXT.getText(), sexoTXT.getText(), edadTXT, duiTXT.getText(), nitTXT.getText(), nacionTXT.getText(), telTXT.getText(), estadoTXT.getText(), tipoTXT.getText());
     }//GEN-LAST:event_agregarBTNActionPerformed
 
     private void eliminarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBTNActionPerformed

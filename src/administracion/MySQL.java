@@ -61,8 +61,15 @@ public class MySQL {
         return corr;
     }
     //PARA INGRESAR EMPLEADO
-    public void ingresarEmpleado(){
+    public void ingresarEmpleado(String nombre,String apellido, String sexo, String edad, String DUI, String NIT, String nacio, String tel,String ec, String ts){
+        try{
+            Query = "INSERT INTO datospersonales (nombre, apellido, sexo, edad, DUI, NIT, direccion, nacionalidad, telefono,estado_civil, tipo_sangre) "
+                    + "VALUES("+ nombre +", "+ apellido +", "+ sexo +", "+ edad +", "+ DUI +", "+ NIT +", "+ nacio +", "+ tel +", "+ ec +", "+ ts + " );";
+            Statement st = Conexion.createStatement();
+            ResultSet rs = st.executeQuery(Query);
+        }catch(Exception e){
         
+        }
     }
     //PARA ELIMINAR EMPLEADO(){
     public void eliminarEmpleado(){
