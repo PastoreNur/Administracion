@@ -27,42 +27,80 @@ public class menu extends javax.swing.JFrame {
     private void initComponents() {
 
         datosBTN = new javax.swing.JButton();
+        salirLB = new javax.swing.JLabel();
         antecedentesBTN = new javax.swing.JButton();
         desempeñoBTN = new javax.swing.JButton();
         admisionBTN = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        buscarBTN = new javax.swing.JButton();
+        agregarBTN = new javax.swing.JButton();
+        eliminarBTN = new javax.swing.JButton();
+        datosPN = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        nombreTXT = new javax.swing.JTextField();
+        apellidoTXT = new javax.swing.JTextField();
+        sexoTXT = new javax.swing.JTextField();
+        direccionTXT = new javax.swing.JTextField();
+        nacionTXT = new javax.swing.JTextField();
+        duiTXT = new javax.swing.JTextField();
+        nitTXT = new javax.swing.JTextField();
+        estadoTXT = new javax.swing.JTextField();
+        tipoTXT = new javax.swing.JTextField();
+        telTXT = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(932, 535));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        datosBTN.setBackground(new java.awt.Color(204, 204, 204));
+        datosBTN.setBackground(new java.awt.Color(102, 102, 102));
         datosBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        datosBTN.setForeground(new java.awt.Color(255, 255, 255));
         datosBTN.setText("DATOS PERSONALES");
         datosBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         datosBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         datosBTN.setFocusable(false);
-        getContentPane().add(datosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 180, 70));
+        getContentPane().add(datosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 130, 70));
 
-        antecedentesBTN.setBackground(new java.awt.Color(204, 204, 204));
+        salirLB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar X.png"))); // NOI18N
+        salirLB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salirLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salirLBMouseClicked(evt);
+            }
+        });
+        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, -1));
+
+        antecedentesBTN.setBackground(new java.awt.Color(102, 102, 102));
         antecedentesBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        antecedentesBTN.setForeground(new java.awt.Color(255, 255, 255));
         antecedentesBTN.setText("ANTECEDENTES");
         antecedentesBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         antecedentesBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         antecedentesBTN.setFocusable(false);
-        getContentPane().add(antecedentesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 180, 70));
+        getContentPane().add(antecedentesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 130, 70));
 
-        desempeñoBTN.setBackground(new java.awt.Color(204, 204, 204));
+        desempeñoBTN.setBackground(new java.awt.Color(102, 102, 102));
         desempeñoBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        desempeñoBTN.setForeground(new java.awt.Color(255, 255, 255));
         desempeñoBTN.setText("DESEMPEÑO");
         desempeñoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         desempeñoBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         desempeñoBTN.setFocusable(false);
-        getContentPane().add(desempeñoBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 180, 70));
+        getContentPane().add(desempeñoBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 130, 70));
 
-        admisionBTN.setBackground(new java.awt.Color(204, 204, 204));
+        admisionBTN.setBackground(new java.awt.Color(102, 102, 102));
         admisionBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        admisionBTN.setForeground(new java.awt.Color(255, 255, 255));
         admisionBTN.setText("DATOS DE ADMISION");
         admisionBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         admisionBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -72,18 +110,149 @@ public class menu extends javax.swing.JFrame {
                 admisionBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(admisionBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 180, 70));
+        getContentPane().add(admisionBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 130, 70));
 
-        jButton1.setText("Cerrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buscarBTN.setBackground(new java.awt.Color(204, 204, 204));
+        buscarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        buscarBTN.setText("BUSCAR");
+        buscarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        buscarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarBTN.setFocusable(false);
+        buscarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buscarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, -1, -1));
+        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 80, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo-login.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        agregarBTN.setBackground(new java.awt.Color(204, 204, 204));
+        agregarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        agregarBTN.setText("AGREGAR");
+        agregarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        agregarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        agregarBTN.setFocusable(false);
+        agregarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(agregarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 80, 60));
+
+        eliminarBTN.setBackground(new java.awt.Color(204, 204, 204));
+        eliminarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        eliminarBTN.setText("ELIMINAR");
+        eliminarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        eliminarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eliminarBTN.setFocusable(false);
+        eliminarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eliminarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 80, 60));
+
+        datosPN.setBackground(new java.awt.Color(51, 51, 51));
+        datosPN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("TIPO DE SANGRE:");
+        datosPN.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 140, 30));
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("NOMBRES:");
+        datosPN.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 90, 20));
+
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("APELLIDOS:");
+        datosPN.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 20));
+
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("SEXO:");
+        datosPN.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 50, 20));
+
+        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("DUI:");
+        datosPN.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 40, 30));
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("NIT:");
+        datosPN.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 40, 30));
+
+        jLabel8.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("DIRECCION:");
+        datosPN.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 100, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("NACIONALIDAD:");
+        datosPN.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("TELEFONO:");
+        datosPN.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 90, 30));
+
+        jLabel11.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("ESTADO CIVIL:");
+        datosPN.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 120, 30));
+
+        nombreTXT.setEditable(false);
+        datosPN.add(nombreTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 170, 40));
+
+        apellidoTXT.setEditable(false);
+        datosPN.add(apellidoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 170, 40));
+
+        sexoTXT.setEditable(false);
+        sexoTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexoTXTActionPerformed(evt);
+            }
+        });
+        datosPN.add(sexoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 170, 40));
+
+        direccionTXT.setEditable(false);
+        direccionTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                direccionTXTActionPerformed(evt);
+            }
+        });
+        datosPN.add(direccionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 170, 40));
+
+        nacionTXT.setEditable(false);
+        datosPN.add(nacionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, 40));
+
+        duiTXT.setEditable(false);
+        duiTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duiTXTActionPerformed(evt);
+            }
+        });
+        datosPN.add(duiTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 170, 40));
+
+        nitTXT.setEditable(false);
+        datosPN.add(nitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 170, 40));
+
+        estadoTXT.setEditable(false);
+        datosPN.add(estadoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 170, 40));
+
+        tipoTXT.setEditable(false);
+        datosPN.add(tipoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 170, 40));
+
+        telTXT.setEditable(false);
+        datosPN.add(telTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 170, 40));
+
+        getContentPane().add(datosPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 710, 350));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo1.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 930, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,10 +261,33 @@ public class menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_admisionBTNActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void salirLBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirLBMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_salirLBMouseClicked
+
+    private void buscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBTNActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buscarBTNActionPerformed
+
+    private void agregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarBTNActionPerformed
+
+    private void eliminarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarBTNActionPerformed
+
+    private void sexoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sexoTXTActionPerformed
+
+    private void direccionTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_direccionTXTActionPerformed
+
+    private void duiTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duiTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_duiTXTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,10 +326,34 @@ public class menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton admisionBTN;
+    private javax.swing.JButton agregarBTN;
     private javax.swing.JButton antecedentesBTN;
+    private javax.swing.JTextField apellidoTXT;
+    private javax.swing.JButton buscarBTN;
     private javax.swing.JButton datosBTN;
+    private javax.swing.JPanel datosPN;
     private javax.swing.JButton desempeñoBTN;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField direccionTXT;
+    private javax.swing.JTextField duiTXT;
+    private javax.swing.JButton eliminarBTN;
+    private javax.swing.JTextField estadoTXT;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField nacionTXT;
+    private javax.swing.JTextField nitTXT;
+    private javax.swing.JTextField nombreTXT;
+    private javax.swing.JLabel salirLB;
+    private javax.swing.JTextField sexoTXT;
+    private javax.swing.JTextField telTXT;
+    private javax.swing.JTextField tipoTXT;
     // End of variables declaration//GEN-END:variables
 }

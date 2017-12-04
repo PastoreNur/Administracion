@@ -44,10 +44,6 @@ public class MySQL {
             Query = "SELECT * FROM acceso where nombre_usu='"+ usu +"'"+" and contra_usu='"+ contra+"';";
             Statement st = Conexion.createStatement();
             ResultSet rs = st.executeQuery(Query);
-            
-            
-            
-            
             if( rs.first() ){
                 menu m = new menu();
                 m.setVisible(true);

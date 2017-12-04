@@ -38,7 +38,7 @@ public class login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         usuarioTXT = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        salirLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
@@ -78,13 +78,14 @@ public class login extends javax.swing.JFrame {
         usuarioTXT.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(usuarioTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 260, 50));
 
-        jButton1.setText("Cerrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        salirLB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar X.png"))); // NOI18N
+        salirLB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salirLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salirLBMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, -1, -1));
+        jPanel1.add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
 
@@ -109,10 +110,9 @@ public class login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ingresarBTNActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void salirLBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirLBMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_salirLBMouseClicked
 
     /**
      * @param args the command line arguments
@@ -152,10 +152,10 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contraTXT;
     private javax.swing.JButton ingresarBTN;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel salirLB;
     private javax.swing.JTextField usuarioTXT;
     // End of variables declaration//GEN-END:variables
 
