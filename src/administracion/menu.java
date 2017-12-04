@@ -30,6 +30,7 @@ public class menu extends javax.swing.JFrame {
         antecedentesBTN = new javax.swing.JButton();
         desempeñoBTN = new javax.swing.JButton();
         admisionBTN = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,6 +74,14 @@ public class menu extends javax.swing.JFrame {
         });
         getContentPane().add(admisionBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 180, 70));
 
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo-login.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -82,6 +91,11 @@ public class menu extends javax.swing.JFrame {
     private void admisionBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admisionBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_admisionBTNActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +137,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton antecedentesBTN;
     private javax.swing.JButton datosBTN;
     private javax.swing.JButton desempeñoBTN;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
