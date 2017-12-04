@@ -5,21 +5,34 @@
  */
 package administracion;
 
+import static administracion.MySQL.acceso;
 import static administracion.MySQL.apellido;
+import static administracion.MySQL.area;
+import static administracion.MySQL.cargo;
+import static administracion.MySQL.cargoActual;
+import static administracion.MySQL.codigo;
+import static administracion.MySQL.contrato;
 import static administracion.MySQL.direccion;
 import static administracion.MySQL.dui;
 import static administracion.MySQL.edad;
 import static administracion.MySQL.estado;
+import static administracion.MySQL.fecha;
+import static administracion.MySQL.fechaContrato;
+import static administracion.MySQL.habilidades;
 import static administracion.MySQL.jefe;
 import static administracion.MySQL.nacio;
 import static administracion.MySQL.nit;
 import static administracion.MySQL.nombre;
+import static administracion.MySQL.nota;
 import static administracion.MySQL.remuneracion;
+import static administracion.MySQL.remuneracionD;
+import static administracion.MySQL.salario;
 import static administracion.MySQL.sexo;
 import static administracion.MySQL.tel;
 import static administracion.MySQL.tipo;
 import static administracion.MySQL.ultimaEmpresa;
 import static administracion.MySQL.ultimoCargo;
+import static administracion.MySQL.ultimoJefe;
 import static administracion.MySQL.ultimoSueldo;
 import java.awt.BorderLayout;
 
@@ -33,6 +46,19 @@ public class menu extends javax.swing.JFrame {
     public menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        int a = acceso;
+        
+        buscarBTN.setVisible(false);
+        eliminarBTN.setVisible(false);
+        agregarBTN.setVisible(false);
+        
+        if(a == 2){
+            buscarBTN.setVisible(true);
+            eliminarBTN.setVisible(true);
+            agregarBTN.setVisible(true);
+        }
+        
     }
 
     /**
@@ -56,6 +82,7 @@ public class menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusable(false);
         setMaximumSize(new java.awt.Dimension(932, 535));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,7 +108,7 @@ public class menu extends javax.swing.JFrame {
                 salirLBMouseClicked(evt);
             }
         });
-        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, -1, -1));
+        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, -1));
 
         antecedentesBTN.setBackground(new java.awt.Color(102, 102, 102));
         antecedentesBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
@@ -195,6 +222,15 @@ public class menu extends javax.swing.JFrame {
         datosPN.add(a, BorderLayout.CENTER);
         datosPN.revalidate();
         datosPN.repaint();
+        
+        a.fechaTXT.setText(fechaContrato);
+        a.cargoinicialTXT.setText(cargo);
+        a.salarioTXT.setText("$ " + String.valueOf(salario));
+        a.codigoTXT.setText(String.valueOf(codigo));
+        a.jefeTXT.setText(jefe);
+        a.areaTXT.setText(area);
+        a.contratoTXT.setText(contrato);
+        
     }//GEN-LAST:event_admisionBTNActionPerformed
 
     private void salirLBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirLBMouseClicked
@@ -222,7 +258,7 @@ public class menu extends javax.swing.JFrame {
         datosPN.revalidate();
         datosPN.repaint();
         
-        a.antiguoJefeTXT.setText(jefe);
+        a.antiguoJefeTXT.setText(ultimoJefe);
         a.remuneracionTXT.setText(String.valueOf(remuneracion));
         a.empresaTXT.setText(ultimaEmpresa);
         a.ultimocargoTXT.setText(ultimoCargo);
@@ -259,6 +295,13 @@ public class menu extends javax.swing.JFrame {
         datosPN.add(d, BorderLayout.CENTER);
         datosPN.revalidate();
         datosPN.repaint();
+        
+        d.habilidadesTXT.setText(habilidades);
+        d.cargoActualTXT.setText(cargoActual);
+        d.ultimafechaTXT.setText(fecha);
+        d.notaTXT.setText(String.valueOf(nota));
+        d.remuneracionTXT.setText("$ " + String.valueOf(remuneracionD));
+        
     }//GEN-LAST:event_desempeñoBTNActionPerformed
 
     /**
@@ -302,7 +345,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton antecedentesBTN;
     private javax.swing.JButton buscarBTN;
     private javax.swing.JButton datosBTN;
-    private javax.swing.JPanel datosPN;
+    public static javax.swing.JPanel datosPN;
     private javax.swing.JButton desempeñoBTN;
     private javax.swing.JButton eliminarBTN;
     private javax.swing.JLabel jLabel1;

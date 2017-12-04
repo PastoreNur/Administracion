@@ -31,7 +31,7 @@ public class desempeño extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         notaTXT = new javax.swing.JTextField();
         remuneracionTXT = new javax.swing.JTextField();
-        antiguoJefeTXT = new javax.swing.JTextField();
+        ultimafechaTXT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         cargoActualTXT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -62,13 +62,13 @@ public class desempeño extends javax.swing.JPanel {
         remuneracionTXT.setEditable(false);
         add(remuneracionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 270, 40));
 
-        antiguoJefeTXT.setEditable(false);
-        antiguoJefeTXT.addActionListener(new java.awt.event.ActionListener() {
+        ultimafechaTXT.setEditable(false);
+        ultimafechaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                antiguoJefeTXTActionPerformed(evt);
+                ultimafechaTXTActionPerformed(evt);
             }
         });
-        add(antiguoJefeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 270, 40));
+        add(ultimafechaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 270, 40));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -96,21 +96,21 @@ public class desempeño extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_notaTXTActionPerformed
 
-    private void antiguoJefeTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antiguoJefeTXTActionPerformed
+    private void ultimafechaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ultimafechaTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_antiguoJefeTXTActionPerformed
+    }//GEN-LAST:event_ultimafechaTXTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField antiguoJefeTXT;
-    private javax.swing.JTextField cargoActualTXT;
+    public javax.swing.JTextField cargoActualTXT;
     public static javax.swing.JTextField habilidadesTXT;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField notaTXT;
-    private javax.swing.JTextField remuneracionTXT;
+    public javax.swing.JTextField notaTXT;
+    public javax.swing.JTextField remuneracionTXT;
+    public javax.swing.JTextField ultimafechaTXT;
     // End of variables declaration//GEN-END:variables
 }

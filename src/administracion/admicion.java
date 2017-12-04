@@ -40,7 +40,7 @@ public class admicion extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         cargoinicialTXT = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        areaTXT1 = new javax.swing.JTextField();
+        areaTXT = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,8 +108,8 @@ public class admicion extends javax.swing.JPanel {
         jLabel11.setText("AREA ASIGNADA:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 160, 30));
 
-        areaTXT1.setEditable(false);
-        add(areaTXT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 180, 40));
+        areaTXT.setEditable(false);
+        add(areaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void codigoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTXTActionPerformed
@@ -122,10 +122,10 @@ public class admicion extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField areaTXT1;
-    private javax.swing.JTextField cargoinicialTXT;
-    private javax.swing.JTextField codigoTXT;
-    private javax.swing.JTextField contratoTXT;
+    public javax.swing.JTextField areaTXT;
+    public javax.swing.JTextField cargoinicialTXT;
+    public javax.swing.JTextField codigoTXT;
+    public javax.swing.JTextField contratoTXT;
     public static javax.swing.JTextField fechaTXT;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -134,7 +134,7 @@ public class admicion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jefeTXT;
-    private javax.swing.JTextField salarioTXT;
+    public javax.swing.JTextField jefeTXT;
+    public javax.swing.JTextField salarioTXT;
     // End of variables declaration//GEN-END:variables
 }

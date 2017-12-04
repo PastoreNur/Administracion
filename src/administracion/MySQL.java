@@ -13,9 +13,11 @@ public class MySQL {
     private static Connection Conexion;
     String Query;
     String Query1;
+    String Query2;
+    String Query3;
     
     //NIVEL DE ACCESO
-    public static String acceso = "";
+    public static int acceso;
     
     
     //PARA DATOS PERSONALES
@@ -42,7 +44,7 @@ public class MySQL {
     //PARA ADMICION
     public static String fechaContrato = "";
     public static String cargo = "";
-    public static String salario = "";
+    public static double salario;
     public static String codigo = "";
     public static String jefe = "";
     public static String area = "";
@@ -52,8 +54,8 @@ public class MySQL {
     public static String habilidades = "";
     public static String cargoActual = "";
     public static String fecha = "";
-    public static String nota = "";
-    public static String remuneracionD = "";
+    public static double nota;
+    public static double remuneracionD;
     
     
     //PARA ABRIR LA CONEXION
@@ -89,6 +91,7 @@ public class MySQL {
             ResultSet rs = st.executeQuery(Query);
             if( rs.first() ){
                 ID = rs.getInt("id_usuario");
+                acceso = rs.getInt("nivel_acceso");
                 menu m = new menu();
                 m.setVisible(true);
                 corr = true;
@@ -107,6 +110,7 @@ public class MySQL {
     //PARA TODOS LOS CAMPOS DE LOS FORMULARIO
     public void informacion() throws SQLException{
         try{
+            //PARA DATOS PERSONALES
             Query = "SELECT * FROM datospersonales WHERE id_usuario='" + ID +"'";
             Statement st = Conexion.createStatement();
             java.sql.ResultSet rs;
@@ -125,18 +129,50 @@ public class MySQL {
                 tipo = rs.getString("tipo_sangre");
                 System.out.println(nombre + apellido + sexo+edad+dui+nit+direccion+nacio+tel+estado+tipo);
             }
+            
+            //PARA ANTECEDENTES
             Query1 = "SELECT * FROM antecedentes WHERE id_usuario='" + ID +"'";
             Statement st1 = Conexion.createStatement();
             java.sql.ResultSet rs1;
-            rs1 = st.executeQuery(Query1);
+            rs1 = st1.executeQuery(Query1);
             if(rs1.first()){
                 ultimaEmpresa = rs1.getString("ultima_empresa");
                 ultimoCargo = rs1.getString("ultimo_cargo");
-                jefe = rs1.getString("jefe_inmediato");
+                ultimoJefe = rs1.getString("jefe_inmediato");
                 ultimoSueldo = rs1.getDouble("ultimo_sueldo");
                 remuneracion = rs1.getDouble("remuneracion");
                 System.out.println(ultimaEmpresa+ultimoCargo+jefe+ultimoSueldo+remuneracion);
             }
+            
+            //PARA ADMISION
+            Query2 = "SELECT * FROM admision WHERE id_usario='" + ID +"'";
+            Statement st2 = Conexion.createStatement();
+            java.sql.ResultSet rs2;
+            rs2 = st2.executeQuery(Query2);
+            if(rs2.first()){
+                fechaContrato = rs2.getString("fecha_contrato");
+                cargo = rs2.getString("cargo_inicial");
+                salario = rs2.getDouble("salario");
+                codigo = String.valueOf(ID);
+                jefe = rs2.getString("jefe");
+                area = rs2.getString("area");
+                contrato =  rs2.getString("contrato");
+                System.out.println(fechaContrato + cargo + salario + codigo + jefe + area + contrato);
+            }
+            //PARA DESEMPEÑO
+            Query3 = "SELECT * FROM desempeño WHERE id_usuario='" + ID +"'";
+            Statement st3 = Conexion.createStatement();
+            java.sql.ResultSet rs3;
+            rs3 = st3.executeQuery(Query3);
+            if(rs3.first()){
+                habilidades = rs3.getString("habilidades");
+                cargoActual = rs3.getString("cargo_actual");
+                fecha = rs3.getString("ultima_fecha");
+                nota = rs3.getDouble("nota");
+                remuneracionD = rs3.getDouble("remuneracion");
+                System.out.println(habilidades + cargoActual + fecha +nota + remuneracionD);
+            }
+            
         }
         catch(Exception e){
             
