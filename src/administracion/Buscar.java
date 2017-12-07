@@ -5,9 +5,13 @@
  */
 package administracion;
 
+import controlador.Database;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,10 +29,32 @@ public class Buscar extends javax.swing.JFrame {
             
         }
         
-        
+        mostrar();
         initComponents();
     }
+    
+    
+    
+    private void mostrar() {        
+        DefaultTableModel modelo = new DefaultTableModel();               
+        ResultSet rs = Database.getTabla("SELECT a.id_usuario,dt.nombre,dt.sexo,des.nota,dt.edad,ad.salario,des.cargo_actual, dt.estado_civil FROM"
+                + " acceso a, datospersonales dt, desempeño des,admision ad WHERE"
+                + " a.id_usuario = dt.id_usuario AND a.id_usuario = des.id_usuario AND a.id_usuario = ad.id_usario ");
+        modelo.setColumnIdentifiers(new Object[]{"ID", "Nombre","Estado Civil","Edad","Sueldo","Nota","Cargo"});
+        try {
+            while (rs.next()) {
+                // añade los resultado a al modelo de tabla
+                modelo.addRow(new Object[]{rs.getString("id_usuario"), rs.getString("nombre"),rs.getString("estado_civil"),rs.getString("edad"),rs.getString("salario"),rs.getString("nota"),rs.getString("cargo_actual")});
+            }            
+            // asigna el modelo a la tabla
+            mostrarTBL.setModel(modelo);            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,8 +68,31 @@ public class Buscar extends javax.swing.JFrame {
         codigoTXT = new javax.swing.JTextField();
         sexoCB = new javax.swing.JComboBox<>();
         civilCB = new javax.swing.JComboBox<>();
+        notaCB = new javax.swing.JComboBox<>();
+        cargoCB = new javax.swing.JComboBox<>();
+        edadTXT = new javax.swing.JTextField();
+        sueldoTXT = new javax.swing.JTextField();
+        nombreTXT = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        mostrarTBL = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(1005, 620));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buscarBTN.setText("BUSCAR");
@@ -52,20 +101,70 @@ public class Buscar extends javax.swing.JFrame {
                 buscarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 110, 40));
+        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 100, 30));
 
         codigoTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoTXTActionPerformed(evt);
             }
         });
-        getContentPane().add(codigoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 370, 70));
+        getContentPane().add(codigoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 150, 30));
 
         sexoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
-        getContentPane().add(sexoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 140, 50));
+        getContentPane().add(sexoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 110, 30));
 
         civilCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado", "Divorciado", "Viudo", "Acompañado" }));
-        getContentPane().add(civilCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 60));
+        getContentPane().add(civilCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 90, 30));
+
+        notaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        getContentPane().add(notaCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 50, 30));
+
+        getContentPane().add(cargoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 90, 30));
+        getContentPane().add(edadTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 90, 30));
+        getContentPane().add(sueldoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 110, 30));
+        getContentPane().add(nombreTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 100, 30));
+
+        mostrarTBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(mostrarTBL);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 950, 450));
+
+        jButton1.setText("Cancelar");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 570, -1, -1));
+
+        jLabel1.setText("Estado civil:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel2.setText("Sexo:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+
+        jLabel3.setText("Nota:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+
+        jLabel4.setText("Cargo:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        jLabel5.setText("Nombre:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+
+        jLabel6.setText("Edad:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+
+        jLabel7.setText("Sueldo:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
+
+        jLabel8.setText("Codigo:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -97,6 +196,11 @@ public class Buscar extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_buscarBTNActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -135,8 +239,24 @@ public class Buscar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBTN;
+    private javax.swing.JComboBox<String> cargoCB;
     private javax.swing.JComboBox<String> civilCB;
     private javax.swing.JTextField codigoTXT;
+    private javax.swing.JTextField edadTXT;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable mostrarTBL;
+    private javax.swing.JTextField nombreTXT;
+    private javax.swing.JComboBox<String> notaCB;
     private javax.swing.JComboBox<String> sexoCB;
+    private javax.swing.JTextField sueldoTXT;
     // End of variables declaration//GEN-END:variables
 }
