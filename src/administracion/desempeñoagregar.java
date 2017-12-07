@@ -27,6 +27,8 @@ public class desempeñoagregar extends javax.swing.JFrame {
     this.ant = antp;
     this.dp = dpp;
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -52,6 +54,7 @@ public class desempeñoagregar extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,18 +69,14 @@ public class desempeñoagregar extends javax.swing.JFrame {
         jLabel12.setText("NOTA ALCANZADA:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 160, -1));
 
-        notaTXT.setEditable(false);
         notaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 notaTXTActionPerformed(evt);
             }
         });
         jPanel1.add(notaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 270, 40));
-
-        remuneracionTXT.setEditable(false);
         jPanel1.add(remuneracionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 270, 40));
 
-        ultimafechaTXT.setEditable(false);
         ultimafechaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ultimafechaTXTActionPerformed(evt);
@@ -89,8 +88,6 @@ public class desempeñoagregar extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("FECHA DE LA ULTIMA EVALUACION");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 290, 20));
-
-        cargoActualTXT.setEditable(false);
         jPanel1.add(cargoActualTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 270, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -102,8 +99,6 @@ public class desempeñoagregar extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("HABILIDADES TECNICAS Y MANUALES:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 310, 20));
-
-        habilidadesTXT.setEditable(false);
         jPanel1.add(habilidadesTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 270, 40));
 
         jButton1.setText("Agregar");
@@ -112,7 +107,7 @@ public class desempeñoagregar extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

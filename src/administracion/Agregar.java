@@ -19,6 +19,7 @@ public class Agregar extends javax.swing.JFrame {
      */
     public Agregar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +37,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        estadoTXT = new javax.swing.JTextField();
         nitTXT = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -45,7 +45,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        sexoTXT = new javax.swing.JTextField();
         apellidoTXT = new javax.swing.JTextField();
         direccionTXT = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -54,8 +53,11 @@ public class Agregar extends javax.swing.JFrame {
         edadTXT = new javax.swing.JTextField();
         nacionTXT = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        sexoCB = new javax.swing.JComboBox<>();
+        civilCB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,7 +78,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("ESTADO CIVIL:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 120, 30));
-        jPanel1.add(estadoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 170, 40));
         jPanel1.add(nitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 170, 40));
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -111,13 +112,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("SEXO:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 50, 20));
-
-        sexoTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sexoTXTActionPerformed(evt);
-            }
-        });
-        jPanel1.add(sexoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 170, 40));
         jPanel1.add(apellidoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 170, 40));
 
         direccionTXT.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +144,18 @@ public class Agregar extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 190, 40));
+
+        sexoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        sexoCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexoCBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sexoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 170, 40));
+
+        civilCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado", "Divorciado", "Viudo", "Acompañado" }));
+        jPanel1.add(civilCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 170, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,29 +185,27 @@ public class Agregar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_duiTXTActionPerformed
 
-    private void sexoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sexoTXTActionPerformed
-
     private void direccionTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTXTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_direccionTXTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String sexo = sexoCB.getSelectedItem().toString();
+        String civil = civilCB.getSelectedItem().toString();
         
         
-        if(this.nombreTXT.getText().isEmpty() || this.apellidoTXT.getText().isEmpty() ||
-        this.sexoTXT.getText().isEmpty() || this.direccionTXT.getText().isEmpty() || this.nacionTXT.getText().isEmpty() || this.edadTXT.getText().isEmpty() ||
-                this.duiTXT.getText().isEmpty() || this.nitTXT.getText().isEmpty() || this.estadoTXT.getText().isEmpty() || this.tipoTXT.getText().isEmpty() ||
+        if(this.nombreTXT.getText().isEmpty() || this.apellidoTXT.getText().isEmpty()|| 
+                this.direccionTXT.getText().isEmpty() || this.nacionTXT.getText().isEmpty() || this.edadTXT.getText().isEmpty() ||
+                this.duiTXT.getText().isEmpty() || this.nitTXT.getText().isEmpty() || this.tipoTXT.getText().isEmpty() ||
                 this.telTXT.getText().isEmpty()){
         
                         JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
             
         }else{
         Datos_personales dp = new Datos_personales(this.nombreTXT.getText(),this.apellidoTXT.getText()
-        ,this.sexoTXT.getText(),this.direccionTXT.getText(),this.nacionTXT.getText(),this.edadTXT.getText(),
-                this.duiTXT.getText(),this.nitTXT.getText(),this.estadoTXT.getText(),this.tipoTXT.getText(),
+        ,sexo,this.direccionTXT.getText(),this.nacionTXT.getText(),this.edadTXT.getText(),
+                this.duiTXT.getText(),this.nitTXT.getText(),civil,this.tipoTXT.getText(),
                 this.telTXT.getText());
         
         Antecedentesagregar ag = new Antecedentesagregar(dp); 
@@ -210,6 +213,10 @@ public class Agregar extends javax.swing.JFrame {
         this.dispose();
         }        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sexoCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sexoCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,10 +255,10 @@ public class Agregar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField apellidoTXT;
+    private javax.swing.JComboBox<String> civilCB;
     public javax.swing.JTextField direccionTXT;
     public javax.swing.JTextField duiTXT;
     public javax.swing.JTextField edadTXT;
-    public javax.swing.JTextField estadoTXT;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -268,7 +275,7 @@ public class Agregar extends javax.swing.JFrame {
     public javax.swing.JTextField nacionTXT;
     public javax.swing.JTextField nitTXT;
     public javax.swing.JTextField nombreTXT;
-    public javax.swing.JTextField sexoTXT;
+    private javax.swing.JComboBox<String> sexoCB;
     public javax.swing.JTextField telTXT;
     public javax.swing.JTextField tipoTXT;
     // End of variables declaration//GEN-END:variables

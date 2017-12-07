@@ -243,7 +243,7 @@ public class menu extends javax.swing.JFrame {
 
     private void agregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBTNActionPerformed
         // TODO add your handling code here:
-        Agregar a = new Agregar();
+        aceso a = new aceso();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_agregarBTNActionPerformed

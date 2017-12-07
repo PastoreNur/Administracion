@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import entidades.Admision;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.Desempeño;
@@ -48,8 +49,8 @@ public class consulta{
     pst.setString(1, "null");
     pst.setString(2, ant.getUltimaempresa());
     pst.setString(3, ant.getUltimocargo());
-    pst.setString(4, "null");
-    pst.setString(5, ant.getUltimojefe());
+    pst.setString(4, ant.getUltimojefe());
+    pst.setString(5, ant.getUltimosueldo());
     pst.setString(6, ant.getRemuneracion());
     
     
@@ -128,9 +129,6 @@ public class consulta{
             }
                 
                 }catch(Exception e){}
-        
-   
-    
         }
     
     return false;
@@ -143,9 +141,42 @@ public class consulta{
     
     try{
     con = conectar();
-    String sql = "";
+    String sql = "INSERT INTO `desempeño`(`id_usuario`, `habilidades`, `remuneracion`, `cargo_actual`, `ultima_fecha`, `nota`) VALUES (?,?,?,?,?,?)";
     con.getconexion().prepareStatement(sql);
+    con = conectar();
+    pst = con.getconexion().prepareStatement(sql);
+    pst.setString(1, "null");
+    pst.setString(2, desp.getHabilidades());
+    pst.setString(3, desp.getRemuneracion());
+    pst.setString(4, desp.getCargo());
+    pst.setString(5, desp.getFechaevaluacion());
+    pst.setString(6, desp.getNota());
+    
     }catch(Exception e){}
     
+    }
+    
+    private void agregar_admision(Admision ad){
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    conexion con = null;
+    
+    try{
+    con = conectar();
+    String sql = "INSERT INTO `admision`(`fecha_contrato`, `cargo_inicial`, `salario`, `id_usario`, `jefe`, `area`, `contrato`) VALUES (?,?,?,?,?,?,?)";
+    con.getconexion().prepareStatement(sql);
+    con = conectar();
+    pst = con.getconexion().prepareStatement(sql);
+    pst.setString(1, ad.getFecha_Contrato());
+    pst.setString(2, ad.getCargo_Inicial());
+    pst.setString(3, ad.getSalario());
+    pst.setString(4, "null");
+    pst.setString(5, ad.getJefe());
+    pst.setString(6, ad.getArea());
+    pst.setString(7, ad.getContrato());
+    }
+    catch(Exception e){
+        
+    }
     }
 }

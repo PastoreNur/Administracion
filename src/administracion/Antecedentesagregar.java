@@ -22,6 +22,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
     public Antecedentesagregar(Datos_personales dtp) {
         dt = dtp;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -47,6 +48,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,11 +57,8 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("REMUNERACION:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 160, 30));
-
-        remuneracionTXT.setEditable(false);
         jPanel1.add(remuneracionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 270, 40));
 
-        ultimoSueldoTXT.setEditable(false);
         ultimoSueldoTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ultimoSueldoTXTActionPerformed(evt);
@@ -67,18 +66,13 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         });
         jPanel1.add(ultimoSueldoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 270, 40));
 
-        antiguoJefeTXT.setEditable(false);
         antiguoJefeTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 antiguoJefeTXTActionPerformed(evt);
             }
         });
         jPanel1.add(antiguoJefeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 270, 40));
-
-        ultimocargoTXT.setEditable(false);
         jPanel1.add(ultimocargoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 270, 40));
-
-        empresaTXT.setEditable(false);
         jPanel1.add(empresaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 270, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -107,7 +101,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 170, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +148,9 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         Antecedentes ant = new Antecedentes(this.empresaTXT.getText(),this.ultimocargoTXT.getText(),
         this.antiguoJefeTXT.getText(), this.ultimoSueldoTXT.getText(), this.remuneracionTXT.getText() );
         
+        Admisionagregar ad = new Admisionagregar();
+        ad.setVisible(true);
+        this.dispose();
         
         
         }
