@@ -6,6 +6,7 @@
 package administracion;
 
 import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,8 +75,10 @@ public class Buscar extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoTXTActionPerformed
 
     private void buscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBTNActionPerformed
-        String codigo = codigoTXT.getText();
+        int codigo = parseInt(codigoTXT.getText());
+        
         String sexo = sexoCB.getSelectedItem().toString();
+        
         String civil = civilCB.getSelectedItem().toString();
         
         String cargo = codigoTXT.getText();
@@ -83,15 +86,15 @@ public class Buscar extends javax.swing.JFrame {
         //double nota = parseDouble(codigoTXT.getText());
         //db.buscarEmpleado(codigo);
         //db.buscarSexo(sexo);
-        //db.buscarCivil(civil);
+        
+        db.buscarCivil(civil);
         
         
-        db.buscarCargo(cargo);
+        //db.buscarCargo(cargo);
         
-        //(JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + db.lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
         //db.lista.clear();
-        JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + db.lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-        db.lista.clear();
+        
+        
         
     }//GEN-LAST:event_buscarBTNActionPerformed
 
