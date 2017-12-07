@@ -5,8 +5,11 @@
  */
 package administracion;
 
+import controlador.consulta;
 import entidades.Datos_personales;
 import entidades.acceso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +17,12 @@ import javax.swing.JOptionPane;
  * @author je_pa
  */
 public class Agregar extends javax.swing.JFrame {
-    static acceso ac;
+    
     /**
      * Creates new form Agregar
      */
-    public Agregar(acceso acp) {
-        ac = acp;
+    public Agregar() {
+        
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -53,10 +56,10 @@ public class Agregar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         edadTXT = new javax.swing.JTextField();
-        nacionTXT = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         sexoCB = new javax.swing.JComboBox<>();
         civilCB = new javax.swing.JComboBox<>();
+        nacionCB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -138,7 +141,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel8.setText("EDAD:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 50, -1));
         jPanel1.add(edadTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 170, 40));
-        jPanel1.add(nacionTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, 40));
 
         jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +160,9 @@ public class Agregar extends javax.swing.JFrame {
 
         civilCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado", "Divorciado", "Viudo", "Acompañado" }));
         jPanel1.add(civilCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 170, 40));
+
+        nacionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salvadoreña", "Otro" }));
+        jPanel1.add(nacionCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,24 +200,39 @@ public class Agregar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String sexo = sexoCB.getSelectedItem().toString();
         String civil = civilCB.getSelectedItem().toString();
+        String nacio = nacionCB.getSelectedItem().toString();
         
+        String nombre = this.nombreTXT.getText();
+        String apellido = this.apellidoTXT.getText();
+        String edad = this.edadTXT.getText();
+        String DUI = this.duiTXT.getText();
+        String NIT = this.nitTXT.getText();
+        String direc =  this.direccionTXT.getText();
+        String tel =  this.telTXT.getText();
+        String sangre = this.tipoTXT.getText();
+        
+        consulta con = new consulta();
+        
+        try {
+            con.MySQLConnection();
+            con.tam();
+        } catch (Exception ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if(this.nombreTXT.getText().isEmpty() || this.apellidoTXT.getText().isEmpty()|| 
-                this.direccionTXT.getText().isEmpty() || this.nacionTXT.getText().isEmpty() || this.edadTXT.getText().isEmpty() ||
+                this.direccionTXT.getText().isEmpty() ||  this.edadTXT.getText().isEmpty() ||
                 this.duiTXT.getText().isEmpty() || this.nitTXT.getText().isEmpty() || this.tipoTXT.getText().isEmpty() ||
                 this.telTXT.getText().isEmpty()){
         
                         JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
             
         }else{
-        Datos_personales dp = new Datos_personales(this.nombreTXT.getText(),this.apellidoTXT.getText()
-        ,sexo,this.direccionTXT.getText(),this.nacionTXT.getText(),this.edadTXT.getText(),
-                this.duiTXT.getText(),this.nitTXT.getText(),civil,this.tipoTXT.getText(),
-                this.telTXT.getText());
-        
-        Antecedentesagregar ag = new Antecedentesagregar(dp,ac); 
-        ag.setVisible(true);
-        this.dispose();
+            
+            con.agregar_dp(nombre, apellido, sexo, edad, DUI, NIT, direc, nacio, tel, civil, sangre);
+            Antecedentesagregar ag = new Antecedentesagregar(); 
+            ag.setVisible(true);
+            this.dispose();
         }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -250,7 +270,7 @@ public class Agregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agregar(ac).setVisible(true);
+                new Agregar().setVisible(true);
             }
         });
     }
@@ -274,7 +294,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField nacionTXT;
+    private javax.swing.JComboBox<String> nacionCB;
     public javax.swing.JTextField nitTXT;
     public javax.swing.JTextField nombreTXT;
     private javax.swing.JComboBox<String> sexoCB;

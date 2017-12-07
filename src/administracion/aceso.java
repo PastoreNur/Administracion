@@ -5,6 +5,7 @@
  */
 package administracion;
 
+import controlador.consulta;
 import entidades.acceso;
 import javax.swing.JOptionPane;
 
@@ -110,19 +111,27 @@ public class aceso extends javax.swing.JFrame {
 
     private void siguienteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBTNActionPerformed
         String nivel = nivelCB.getSelectedItem().toString();
+        String usuario = usuarioTXT.getText();
+        String contra = contraTXT.getText();
         if("Nivel de acceso: 1".equals(nivel)){
             nivel = "1";
         }else{
             nivel = "2";
         }
+        consulta con = new consulta();
         
-        acceso ac = new acceso(this.codigoTXT.getText(),nivel,this.usuarioTXT.getText(),this.contraTXT.getText());
 
         if(this.usuarioTXT.getText().isEmpty() || this.contraTXT.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
         }else{
-            
-            Agregar a = new Agregar(ac);
+            try{
+                con.MySQLConnection();
+                con.agregar_acceso(nivel, usuario, contra);
+            }
+            catch(Exception e){
+                
+            }
+            Agregar a = new Agregar();
             a.setVisible(true);
             this.dispose();
         }

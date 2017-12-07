@@ -5,10 +5,12 @@
  */
 package administracion;
 
-import static administracion.desempeñoagregar.dp;
+import controlador.consulta;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.acceso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +22,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
     /**
      * Creates new form Antecedentesagregar
     */
-    static acceso ac;
-    static Datos_personales dt;
-    public Antecedentesagregar(Datos_personales dtp,acceso ac) {
-        dt = dtp;
+    public Antecedentesagregar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -140,6 +139,11 @@ public class Antecedentesagregar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String empresa = this.empresaTXT.getText();
+        String cargo = this.ultimocargoTXT.getText();
+        String jefe = this.antiguoJefeTXT.getText();
+        String sueldo = this.ultimoSueldoTXT.getText();
+        String rem = this.remuneracionTXT.getText();
         
         if(this.empresaTXT.getText().isEmpty() || this.ultimocargoTXT.getText().isEmpty() ||
         this.antiguoJefeTXT.getText().isEmpty() || this.ultimoSueldoTXT.getText().isEmpty() || this.remuneracionTXT.getText().isEmpty()){
@@ -148,9 +152,20 @@ public class Antecedentesagregar extends javax.swing.JFrame {
 
             
         }else{
-        Antecedentes ant = new Antecedentes(this.empresaTXT.getText(),this.ultimocargoTXT.getText(),
-        this.antiguoJefeTXT.getText(), this.ultimoSueldoTXT.getText(), this.remuneracionTXT.getText() );
-        new desempeñoagregar(dp,ant,ac).setVisible(true);
+            consulta con = new consulta();
+        
+        try {
+            con.MySQLConnection();
+            con.tam();
+            con.agregar_ant(empresa, cargo, jefe, sueldo, rem);
+            desempeñoagregar des = new desempeñoagregar();
+            des.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        desempeñoagregar ag = new desempeñoagregar();
+        
         this.dispose();
         
         
@@ -189,7 +204,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Antecedentesagregar(dt,ac).setVisible(true);
+                new Antecedentesagregar().setVisible(true);
             }
         });
     }

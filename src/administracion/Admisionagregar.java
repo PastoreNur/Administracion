@@ -11,6 +11,8 @@ import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.Desempeño;
 import entidades.acceso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,19 +20,11 @@ import javax.swing.JOptionPane;
  * @author RM-PC
  */
 public class Admisionagregar extends javax.swing.JFrame {
-
+    consulta con = new consulta();
     /**
      * Creates new form Admisionagregar
      */
-    static acceso ac;
-    static Datos_personales dt;
-    static Antecedentes ant;
-    static Desempeño des;
-    public Admisionagregar(Datos_personales dtp,acceso ac,Antecedentes ant, Desempeño des) {
-        this.ac = ac;
-        this.dt = dtp;
-        this.ant = ant;
-        this.des = des;
+    public Admisionagregar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -46,8 +40,6 @@ public class Admisionagregar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        codigoTXT = new javax.swing.JTextField();
         jefeTXT = new javax.swing.JTextField();
         salarioTXT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -71,20 +63,8 @@ public class Admisionagregar extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CONTRATO LABORAL:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 180, 30));
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("CODIGO DE TRABAJADOR:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 210, -1));
-
-        codigoTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoTXTActionPerformed(evt);
-            }
-        });
-        jPanel1.add(codigoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 180, 40));
-        jPanel1.add(jefeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 180, 40));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 180, 30));
+        jPanel1.add(jefeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 180, 40));
 
         salarioTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +77,7 @@ public class Admisionagregar extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("SALARIO INICIAL:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 140, 20));
-        jPanel1.add(contratoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 180, 40));
+        jPanel1.add(contratoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 180, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,14 +93,14 @@ public class Admisionagregar extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("NOMBRE DE JEFE:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 160, 30));
         jPanel1.add(cargoinicialTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 180, 40));
 
         jLabel11.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("AREA ASIGNADA:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 160, 30));
-        jPanel1.add(areaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 180, 40));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 160, 30));
+        jPanel1.add(areaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 180, 40));
 
         jButton1.setText("AGREGAR EMPLEADO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -128,42 +108,39 @@ public class Admisionagregar extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 170, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 170, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 720, 402));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void codigoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoTXTActionPerformed
-
     private void salarioTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salarioTXTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_salarioTXTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String fecha = this.fechaTXT.getText();
+       String cargo = this.cargoinicialTXT.getText();
+       String salario = this.salarioTXT.getText();
+       String jefe = this.jefeTXT.getText();
+       String area = this.areaTXT.getText();
+       String contrato =  this.contratoTXT.getText();
        
-        if(this.fechaTXT.getText().isEmpty() ||this.cargoinicialTXT.getText().isEmpty() || this.salarioTXT.getText().isEmpty() || this.jefeTXT.getText().isEmpty() || this.areaTXT.getText().isEmpty() || this.contratoTXT.getText().isEmpty() ){
-            
-            
-                                                JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
+        if(this.fechaTXT.getText().isEmpty() ||this.cargoinicialTXT.getText().isEmpty() || this.salarioTXT.getText().isEmpty() ||
+                this.jefeTXT.getText().isEmpty() || this.areaTXT.getText().isEmpty() || this.contratoTXT.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
             
             
         }else{
-        
-               Admision ad = new Admision(this.fechaTXT.getText(),this.cargoinicialTXT.getText(),this.salarioTXT.getText(),this.jefeTXT.getText(),this.areaTXT.getText(),this.contratoTXT.getText());
-               consulta consul = new consulta();
-            if(consul.agregar_empleado(ant,dt,des,ad,ac)){
-                                                            JOptionPane.showMessageDialog(this, "Usuario agregado de manera exitosa", "Completado", JOptionPane.ERROR_MESSAGE);
-
-            }else{
-            
-                                                                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al ingresar el usuario", "Error!", JOptionPane.ERROR_MESSAGE);
-
-                
+            try {
+                con.MySQLConnection();
+                con.tam();
+                con.agregar_admision(fecha, cargo, salario, jefe, area, contrato);
+            } catch (Exception ex) {
+                Logger.getLogger(Admisionagregar.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
         
      
@@ -200,7 +177,7 @@ public class Admisionagregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admisionagregar(dt,ac,ant,des).setVisible(true);
+                new Admisionagregar().setVisible(true);
             }
         });
     }
@@ -208,13 +185,11 @@ public class Admisionagregar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField areaTXT;
     public javax.swing.JTextField cargoinicialTXT;
-    public javax.swing.JTextField codigoTXT;
     public javax.swing.JTextField contratoTXT;
     public static javax.swing.JTextField fechaTXT;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

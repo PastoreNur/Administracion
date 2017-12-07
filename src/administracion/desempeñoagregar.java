@@ -5,11 +5,13 @@
  */
 package administracion;
 
-import static administracion.Antecedentesagregar.dt;
+import controlador.consulta;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.Desempeño;
 import entidades.acceso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,17 +23,11 @@ public class desempeñoagregar extends javax.swing.JFrame {
     /**
      * Creates new form desempeñoagregar
      */
-    static Datos_personales dp;
-    static Antecedentes ant;
-    static acceso ac;
+       consulta con = new consulta();
+    public desempeñoagregar() {
     
-    public desempeñoagregar(Datos_personales dpp, Antecedentes antp,acceso ac) {
-    this.ant = antp;
-    this.dp = dpp;
-    this.ac =  ac;
     
         initComponents();
-        this.setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
     }
 
@@ -54,8 +50,8 @@ public class desempeñoagregar extends javax.swing.JFrame {
         cargoActualTXT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        habilidadesTXT = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        siguienteBTN = new javax.swing.JButton();
+        habiTXT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -103,15 +99,21 @@ public class desempeñoagregar extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("HABILIDADES TECNICAS Y MANUALES:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 310, 20));
-        jPanel1.add(habilidadesTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 270, 40));
 
-        jButton1.setText("Siguiente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        siguienteBTN.setText("Siguiente");
+        siguienteBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                siguienteBTNActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, 40));
+        jPanel1.add(siguienteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, 40));
+
+        habiTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                habiTXTActionPerformed(evt);
+            }
+        });
+        jPanel1.add(habiTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 270, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,20 +147,34 @@ public class desempeñoagregar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ultimafechaTXTActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(this.habilidadesTXT.getText().isEmpty() || this.cargoActualTXT.getText().isEmpty() ||
-                                         this.ultimafechaTXT.getText().isEmpty() || this.notaTXT.getText().isEmpty() || this.remuneracionTXT.getText().isEmpty()){
-                                JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
-
+    private void siguienteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBTNActionPerformed
+        String habi = habiTXT.getText();
+        String remu = this.remuneracionTXT.getText();
+        String cargo = this.cargoActualTXT.getText();
+        String fecha = this.ultimafechaTXT.getText();
+        String nota = this.notaTXT.getText();
+        if(this.remuneracionTXT.getText().isEmpty() || this.habiTXT.getText().isEmpty() || this.cargoActualTXT.getText().isEmpty() ||
+                this.ultimafechaTXT.getText().isEmpty() || this.notaTXT.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
         }else{
-        Desempeño desemp = new Desempeño(this.habilidadesTXT.getText(), this.cargoActualTXT.getText(), this.ultimafechaTXT.getText(), this.notaTXT.getText(), this.remuneracionTXT.getText());
-        Admisionagregar ad = new Admisionagregar(dt, ac, ant,desemp);
-        ad.setVisible(true);
-        this.dispose();
-        }
+            try {
+                con.MySQLConnection();
+                con.tam();
+                con.agregar_des(habi, remu, cargo, fecha, nota);
+                Admisionagregar ad = new Admisionagregar();
+                ad.setVisible(true);
+                this.dispose();
+                
+            } catch (Exception ex) {
+                Logger.getLogger(desempeñoagregar.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }
+    }//GEN-LAST:event_siguienteBTNActionPerformed
+
+    private void habiTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habiTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_habiTXTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,15 +206,14 @@ public class desempeñoagregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new desempeñoagregar(dp,ant,ac).setVisible(true);
+                new desempeñoagregar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField cargoActualTXT;
-    public static javax.swing.JTextField habilidadesTXT;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField habiTXT;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -207,6 +222,7 @@ public class desempeñoagregar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField notaTXT;
     public javax.swing.JTextField remuneracionTXT;
+    private javax.swing.JButton siguienteBTN;
     public javax.swing.JTextField ultimafechaTXT;
     // End of variables declaration//GEN-END:variables
 }

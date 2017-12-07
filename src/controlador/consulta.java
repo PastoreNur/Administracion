@@ -5,261 +5,175 @@
  */
 package controlador;
 
+import administracion.MySQL;
 import entidades.Admision;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.Desempeño;
 import entidades.acceso;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author je_pa
  */
 public class consulta{
-    
+
     private conexion conectar(){
         conexion con = null;
         try{
-            con = new conexion();
+
         }catch(Exception e){
-        
+
         }
         return con;
     }
-    
-    public boolean agregar_empleado(Antecedentes atn, Datos_personales dat, Desempeño des,Admision ad, acceso ac){
-    
-    return agregar_dp(dat) && agregar_ant(atn) && agregar_des(des) && agregar_acceso(ac) && agregar_admision(ad);
-    }
-    
-    private boolean agregar_ant(Antecedentes ant){
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    conexion con = null;
-    String sql = "INSERT INTO `antecedentes`(`id_usuario`, `ultima_empresa`, `ultimo_cargo`, `jefe_inmediato`, `ultimo_sueldo`, `remuneracion`)"
-            + " VALUES (?,?,?,?,?,?)";
-    
-    try{
-    con = conectar();
-    pst = con.getconexion().prepareStatement(sql);
-    pst.setString(1, "null");
-    pst.setString(2, ant.getUltimaempresa());
-    pst.setString(3, ant.getUltimocargo());
-    pst.setString(4, ant.getUltimojefe());
-    pst.setString(5, ant.getUltimosueldo());
-    pst.setString(6, ant.getRemuneracion());
-    
-    
-    
-    if(pst.executeUpdate() == 1){
-        return true;
-    }
-    
-    }catch(Exception e){
-    return false;
-    }finally{
-        
-        try{ 
-            if(con.getconexion() != null){
-            con.getconexion().close();
-            
-            }
-            
-            if(pst != null){
-                
-            pst.close();
-            
-            }
-                
-                }catch(Exception e){}
-        
-   
-    
+
+    private static Connection Conexion;
+    String Query;
+    public static int tam;
+
+    public void MySQLConnection() throws Exception {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Conexion = DriverManager.getConnection("jdbc:mysql://mysql7001.site4now.net:3306/db_a2ee9e_admin", "a2ee9e_admin", "rmjp1234");
+            JOptionPane.showMessageDialog(null, "Se ha iniciado la conexión");
         }
-    
-    return false;
-    }
-    
-    private boolean agregar_dp(Datos_personales dat){
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    conexion con = null;
-    String sql = "INSERT INTO `datospersonales`(`id_usuario`, `nombre`, `apellido`, `sexo`, `edad`, `DUI`, `NIT`, `direccion`, `nacionalidad`, `telefono`, `estado_civil`, `tipo_sangre`) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-    
-    try{
-    con = conectar();
-    pst = con.getconexion().prepareStatement(sql);
-    pst.setString(1, "null");
-    pst.setString(2, dat.getNombre() );
-    pst.setString(3, dat.getApellido());
-    pst.setString(4, dat.getSexo());
-    pst.setString(5, dat.getEdad());
-    pst.setString(6, dat.getDui());
-    pst.setString(7, dat.getNit());
-    pst.setString(8, dat.getDireccion());
-    pst.setString(9, dat.getNacionalidad());
-    pst.setString(10, dat.getTelefono());
-    pst.setString(11, dat.getEstado_civil());
-    pst.setString(12, dat.getTipo_sangre());
-    
-    
-    if(pst.executeUpdate() == 1){
-        return true;
-    }
-    
-    }catch(Exception e){
-    return false;
-    }finally{
-        
-        try{ 
-            if(con.getconexion() != null){
-            con.getconexion().close();
-            
-            }
-            
-            if(pst != null){
-                
-            pst.close();
-            
-            }
-                
-                }catch(Exception e){}
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    return false;
-    }
-    
-    private boolean agregar_des(Desempeño desp){
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    conexion con = null;
-    
-    try{
-    con = conectar();
-    String sql = "INSERT INTO `desempeño`(`id_usuario`, `habilidades`, `remuneracion`, `cargo_actual`, `ultima_fecha`, `nota`) VALUES (?,?,?,?,?,?)";
-    con.getconexion().prepareStatement(sql);
-    con = conectar();
-    pst = con.getconexion().prepareStatement(sql);
-    pst.setString(1, "null");
-    pst.setString(2, desp.getHabilidades());
-    pst.setString(3, desp.getRemuneracion());
-    pst.setString(4, desp.getCargo());
-    pst.setString(5, desp.getFechaevaluacion());
-    pst.setString(6, desp.getNota());
-    
-    if(pst.executeUpdate() == 1){
-        return true;
-    }
-    
-    }catch(Exception e){
-    return false;
-    }finally{
-        
-        try{ 
-            if(con.getconexion() != null){
-            con.getconexion().close();
-            
-            }
-            
-            if(pst != null){
-                
-            pst.close();
-            
-            }
-                
-                }catch(Exception e){}
+        catch (SQLException ex) {
+            Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return false;
     }
-    
-    private boolean agregar_admision(Admision ad){
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    conexion con = null;
-    
-    try{
-    con = conectar();
-    String sql = "INSERT INTO `admision`(`fecha_contrato`, `cargo_inicial`, `salario`, `id_usario`, `jefe`, `area`, `contrato`) VALUES (?,?,?,?,?,?,?)";
-    con.getconexion().prepareStatement(sql);
-    con = conectar();
-    pst = con.getconexion().prepareStatement(sql);
-    pst.setString(1, ad.getFecha_Contrato());
-    pst.setString(2, ad.getCargo_Inicial());
-    pst.setString(3, ad.getSalario());
-    pst.setString(4, "null");
-    pst.setString(5, ad.getJefe());
-    pst.setString(6, ad.getArea());
-    pst.setString(7, ad.getContrato());
-    
-    if(pst.executeUpdate() == 1){
-        return true;
-    }
-    
-    }
-    catch(Exception e){
-        return false;
-    }finally{
-        
-        try{ 
-            if(con.getconexion() != null){
-            con.getconexion().close();
-            
+    public void tam(){
+        try{
+            int i = 0;
+
+            Query = "SELECT * FROM `acceso`";
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet rs;
+            rs = st.executeQuery(Query);
+            while( rs.next()){
+                i++;
             }
-            
-            if(pst != null){
-                
-            pst.close();
-            
-            }
-                
-                }catch(Exception e){}
+            tam = i;
+            System.out.println(i);
         }
-    return false;
-    }
-    
-    
-    private boolean agregar_acceso(acceso ac){
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    conexion con = null;
-    
-    try{
-    con = conectar();
-    String sql = "INSERT INTO `acceso`(`id_usuario`, `nivel_acceso`, `nombre_usu`, `contra_usu`) VALUES (?,?,?,?)";
-    con.getconexion().prepareStatement(sql);
-    con = conectar();
-    pst = con.getconexion().prepareStatement(sql);
-    pst.setString(1, ac.getId_usuario());
-    pst.setString(2, ac.getNivel_acceso());
-    pst.setString(3, ac.getNombre_usu());
-    pst.setString(4, ac.getContra_usu());
-    
-    if(pst.executeUpdate() == 1){
-        return true;
-    }
-    
-    }
-    catch(Exception e){
-        return false;
-    }finally{
-        
-        try{ 
-            if(con.getconexion() != null){
-            con.getconexion().close();
-            
-            }
-            
-            if(pst != null){
-                
-            pst.close();
-            
-            }
-                
-                }catch(Exception e){}
+        catch(Exception e){
+
         }
-    return false;
+    }
+
+
+    //PARA ANTECEDENTES
+    public void agregar_ant(String empresa, String cargo, String jefe, String sueldo, String rem){
+        try{
+            CallableStatement proc = Conexion.prepareCall("CALL agregar_antecedentes(?,?,?,?,?,?)");
+            proc.setInt("id", tam);
+            proc.setString("empresaU", empresa);
+            proc.setString("cargoU", cargo);
+            proc.setString("jefeU", jefe);
+            proc.setString("sueldoU", sueldo);
+            proc.setString("remU", rem);
+            proc.execute();
+            JOptionPane.showMessageDialog(null, "SE INGRESO EL ANTECEDENTE",
+            "INGRESADO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR EN INGRESO DE DATOS", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    //PARA DESEMPEÑO
+    public void agregar_des(String habi, String remu, String cargo, String fecha, String nota){
+        try{
+            CallableStatement proc = Conexion.prepareCall("CALL agregar_dese(?,?,?,?,?,?)");
+            proc.setInt("id", tam);
+            proc.setString("habi", habi);
+            proc.setString("remu", remu);
+            proc.setString("cargo", cargo);
+            proc.setString("Ufecha", fecha);
+            proc.setString("nota", nota);
+            proc.execute();
+            JOptionPane.showMessageDialog(null, "SE INGRESO EL DESEMPEÑO", "INGRESADO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR EN INGRESO DE DATOS", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    //PARA AGREGAR ADMISION
+    public void agregar_admision(String fecha, String cargo, String salario, String jefe, String area, String contrato){
+        try{
+            CallableStatement proc = Conexion.prepareCall("CALL agregar_ad(?,?,?,?,?,?,?)");
+            proc.setString("fecha", fecha);
+            proc.setString("cargo", cargo);
+            proc.setString("salario", salario);
+            proc.setInt("id", tam);
+            proc.setString("jefe", jefe);
+            proc.setString("area", area);
+            proc.setString("contrato", contrato);
+            proc.execute();
+            JOptionPane.showMessageDialog(null, "SE INGRESO INGRESARON TODOS LOS DATOS \n POR FAVOR VUELVA A INICIAR SESION PARA \n CONFIRMAR LOS CAMBIOS",
+            "INGRESADO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR EN INGRESO DE DATOS", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    //PARA DATOS PERSONALES
+    public void agregar_dp(String nombre, String apellido, String sexo,String edad,String DUI, String NIT,
+            String direc,String nacion,String tel,String civil,String sangre){
+        try{
+            CallableStatement proc = Conexion.prepareCall("CALL agregar_datos(?,?,?,?,?,?,?,?,?,?,?,?)");
+            proc.setInt("id", tam);
+            proc.setString("nombre", nombre);
+            proc.setString("apellido", apellido);
+            proc.setString("sexo", sexo);
+            proc.setString("edad", edad);
+            proc.setString("DUI", DUI);
+            proc.setString("NIT", NIT);
+            proc.setString("direccion", direc);
+            proc.setString("nacion", nacion);
+            proc.setString("tel", tel);
+            proc.setString("civil", civil);
+            proc.setString("sangre", sangre);
+            proc.execute();
+            JOptionPane.showMessageDialog(null, "SE INGRESARON LOS DATOS PERSONALES",
+            "INGRESADO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR EN INGRESO DE DATOS", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    //PARA AGREGAR ACCESO
+    public void agregar_acceso(String acceso, String usu, String contra){
+        try{
+            CallableStatement proc = Conexion.prepareCall("CALL agregar_acceso(?,?,?)");
+            proc.setString("acceso", acceso);
+            proc.setString("usuario", usu);
+            proc.setString("contra", contra);
+            proc.execute();
+            JOptionPane.showMessageDialog(null, "SE INGRESO EL ACCESO",
+            "INGRESADO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR EN INGRESO DE DATOS", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
