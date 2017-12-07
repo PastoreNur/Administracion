@@ -5,8 +5,10 @@
  */
 package administracion;
 
+import static administracion.desempeñoagregar.dp;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
+import entidades.acceso;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +20,9 @@ public class Antecedentesagregar extends javax.swing.JFrame {
     /**
      * Creates new form Antecedentesagregar
     */
+    static acceso ac;
     static Datos_personales dt;
-    public Antecedentesagregar(Datos_personales dtp) {
+    public Antecedentesagregar(Datos_personales dtp,acceso ac) {
         dt = dtp;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -147,9 +150,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         }else{
         Antecedentes ant = new Antecedentes(this.empresaTXT.getText(),this.ultimocargoTXT.getText(),
         this.antiguoJefeTXT.getText(), this.ultimoSueldoTXT.getText(), this.remuneracionTXT.getText() );
-        
-        Admisionagregar ad = new Admisionagregar();
-        ad.setVisible(true);
+        new desempeñoagregar(dp,ant,ac).setVisible(true);
         this.dispose();
         
         
@@ -188,7 +189,7 @@ public class Antecedentesagregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Antecedentesagregar(dt).setVisible(true);
+                new Antecedentesagregar(dt,ac).setVisible(true);
             }
         });
     }

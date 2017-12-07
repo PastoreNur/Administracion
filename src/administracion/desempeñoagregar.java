@@ -5,9 +5,11 @@
  */
 package administracion;
 
+import static administracion.Antecedentesagregar.dt;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.Desempeño;
+import entidades.acceso;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,11 +23,13 @@ public class desempeñoagregar extends javax.swing.JFrame {
      */
     static Datos_personales dp;
     static Antecedentes ant;
+    static acceso ac;
     
-    
-    public desempeñoagregar(Datos_personales dpp, Antecedentes antp) {
+    public desempeñoagregar(Datos_personales dpp, Antecedentes antp,acceso ac) {
     this.ant = antp;
     this.dp = dpp;
+    this.ac =  ac;
+    
         initComponents();
         this.setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
@@ -101,7 +105,7 @@ public class desempeñoagregar extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 310, 20));
         jPanel1.add(habilidadesTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 270, 40));
 
-        jButton1.setText("Agregar");
+        jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -148,11 +152,10 @@ public class desempeñoagregar extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
 
         }else{
-        Desempeño desemp = new Desempeño(this.habilidadesTXT.getText(), this.cargoActualTXT.getText(),
-                                         this.ultimafechaTXT.getText(), this.notaTXT.getText(), this.remuneracionTXT.getText());
-        
-        
-        
+        Desempeño desemp = new Desempeño(this.habilidadesTXT.getText(), this.cargoActualTXT.getText(), this.ultimafechaTXT.getText(), this.notaTXT.getText(), this.remuneracionTXT.getText());
+        Admisionagregar ad = new Admisionagregar(dt, ac, ant,desemp);
+        ad.setVisible(true);
+        this.dispose();
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -187,7 +190,7 @@ public class desempeñoagregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new desempeñoagregar(dp, ant).setVisible(true);
+                new desempeñoagregar(dp,ant,ac).setVisible(true);
             }
         });
     }

@@ -27,9 +27,6 @@ public class Admision {
         
     }
 
-    public Admision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public void setFecha_contrato(String fecha){
         this.fecha_contrato = fecha;

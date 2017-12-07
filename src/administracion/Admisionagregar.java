@@ -5,7 +5,12 @@
  */
 package administracion;
 
+import controlador.consulta;
 import entidades.Admision;
+import entidades.Antecedentes;
+import entidades.Datos_personales;
+import entidades.Desempeño;
+import entidades.acceso;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +22,15 @@ public class Admisionagregar extends javax.swing.JFrame {
     /**
      * Creates new form Admisionagregar
      */
-    public Admisionagregar() {
+    static acceso ac;
+    static Datos_personales dt;
+    static Antecedentes ant;
+    static Desempeño des;
+    public Admisionagregar(Datos_personales dtp,acceso ac,Antecedentes ant, Desempeño des) {
+        this.ac = ac;
+        this.dt = dtp;
+        this.ant = ant;
+        this.des = des;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -131,24 +144,30 @@ public class Admisionagregar extends javax.swing.JFrame {
     }//GEN-LAST:event_salarioTXTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(fechaTXT.getText().isEmpty() || cargoinicialTXT.getText().isEmpty() || salarioTXT.getText().isEmpty() ||
-                jefeTXT.getText().isEmpty() || areaTXT.getText().isEmpty() || contratoTXT.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
+       
+        if(this.fechaTXT.getText().isEmpty() ||this.cargoinicialTXT.getText().isEmpty() || this.salarioTXT.getText().isEmpty() || this.jefeTXT.getText().isEmpty() || this.areaTXT.getText().isEmpty() || this.contratoTXT.getText().isEmpty() ){
+            
+            
+                                                JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
+            
+            
         }else{
-            Admision ad = new Admision();
-            ad.setFecha_contrato(fechaTXT.getText());
-            ad.setCargo_Inicial(cargoinicialTXT.getText());
-            ad.setSalario(salarioTXT.getText());
-            ad.setJefe(jefeTXT.getText());
-            ad.setArea(areaTXT.getText());
-            ad.setContrato(contratoTXT.getText());
+        
+               Admision ad = new Admision(this.fechaTXT.getText(),this.cargoinicialTXT.getText(),this.salarioTXT.getText(),this.jefeTXT.getText(),this.areaTXT.getText(),this.contratoTXT.getText());
+               consulta consul = new consulta();
+            if(consul.agregar_empleado(ant,dt,des,ad,ac)){
+                                                            JOptionPane.showMessageDialog(this, "Usuario agregado de manera exitosa", "Completado", JOptionPane.ERROR_MESSAGE);
+
+            }else{
             
-            JOptionPane.showMessageDialog(this, "NUEVO EMPLEADO AGREGADO", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
-            
-            menu menu = new menu();
-            menu.setVisible(true);
-            this.dispose();
+                                                                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al ingresar el usuario", "Error!", JOptionPane.ERROR_MESSAGE);
+
+                
+            }
         }
+        
+     
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -181,7 +200,7 @@ public class Admisionagregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admisionagregar().setVisible(true);
+                new Admisionagregar(dt,ac,ant,des).setVisible(true);
             }
         });
     }

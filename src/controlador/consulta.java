@@ -9,6 +9,7 @@ import entidades.Admision;
 import entidades.Antecedentes;
 import entidades.Datos_personales;
 import entidades.Desempeño;
+import entidades.acceso;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -28,12 +29,9 @@ public class consulta{
         return con;
     }
     
-    public boolean agregar_empleado(Antecedentes atn, Datos_personales dat, Desempeño des){
-    agregar_ant(atn);
+    public boolean agregar_empleado(Antecedentes atn, Datos_personales dat, Desempeño des,Admision ad, acceso ac){
     
-    agregar_des(des);
-    
-    return agregar_dp(dat);
+    return agregar_dp(dat) && agregar_ant(atn) && agregar_des(des) && agregar_acceso(ac) && agregar_admision(ad);
     }
     
     private boolean agregar_ant(Antecedentes ant){
@@ -134,7 +132,7 @@ public class consulta{
     return false;
     }
     
-    private void agregar_des(Desempeño desp){
+    private boolean agregar_des(Desempeño desp){
     PreparedStatement pst = null;
     ResultSet rs = null;
     conexion con = null;
@@ -152,11 +150,32 @@ public class consulta{
     pst.setString(5, desp.getFechaevaluacion());
     pst.setString(6, desp.getNota());
     
-    }catch(Exception e){}
-    
+    if(pst.executeUpdate() == 1){
+        return true;
     }
     
-    private void agregar_admision(Admision ad){
+    }catch(Exception e){
+    return false;
+    }finally{
+        
+        try{ 
+            if(con.getconexion() != null){
+            con.getconexion().close();
+            
+            }
+            
+            if(pst != null){
+                
+            pst.close();
+            
+            }
+                
+                }catch(Exception e){}
+        }
+    return false;
+    }
+    
+    private boolean agregar_admision(Admision ad){
     PreparedStatement pst = null;
     ResultSet rs = null;
     conexion con = null;
@@ -174,9 +193,73 @@ public class consulta{
     pst.setString(5, ad.getJefe());
     pst.setString(6, ad.getArea());
     pst.setString(7, ad.getContrato());
+    
+    if(pst.executeUpdate() == 1){
+        return true;
+    }
+    
     }
     catch(Exception e){
+        return false;
+    }finally{
         
+        try{ 
+            if(con.getconexion() != null){
+            con.getconexion().close();
+            
+            }
+            
+            if(pst != null){
+                
+            pst.close();
+            
+            }
+                
+                }catch(Exception e){}
+        }
+    return false;
     }
+    
+    
+    private boolean agregar_acceso(acceso ac){
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    conexion con = null;
+    
+    try{
+    con = conectar();
+    String sql = "INSERT INTO `acceso`(`id_usuario`, `nivel_acceso`, `nombre_usu`, `contra_usu`) VALUES (?,?,?,?)";
+    con.getconexion().prepareStatement(sql);
+    con = conectar();
+    pst = con.getconexion().prepareStatement(sql);
+    pst.setString(1, ac.getId_usuario());
+    pst.setString(2, ac.getNivel_acceso());
+    pst.setString(3, ac.getNombre_usu());
+    pst.setString(4, ac.getContra_usu());
+    
+    if(pst.executeUpdate() == 1){
+        return true;
+    }
+    
+    }
+    catch(Exception e){
+        return false;
+    }finally{
+        
+        try{ 
+            if(con.getconexion() != null){
+            con.getconexion().close();
+            
+            }
+            
+            if(pst != null){
+                
+            pst.close();
+            
+            }
+                
+                }catch(Exception e){}
+        }
+    return false;
     }
 }

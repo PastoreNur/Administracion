@@ -6,6 +6,7 @@
 package administracion;
 
 import entidades.Datos_personales;
+import entidades.acceso;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +14,12 @@ import javax.swing.JOptionPane;
  * @author je_pa
  */
 public class Agregar extends javax.swing.JFrame {
-
+    static acceso ac;
     /**
      * Creates new form Agregar
      */
-    public Agregar() {
+    public Agregar(acceso acp) {
+        ac = acp;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -208,7 +210,7 @@ public class Agregar extends javax.swing.JFrame {
                 this.duiTXT.getText(),this.nitTXT.getText(),civil,this.tipoTXT.getText(),
                 this.telTXT.getText());
         
-        Antecedentesagregar ag = new Antecedentesagregar(dp); 
+        Antecedentesagregar ag = new Antecedentesagregar(dp,ac); 
         ag.setVisible(true);
         this.dispose();
         }        
@@ -248,7 +250,7 @@ public class Agregar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agregar().setVisible(true);
+                new Agregar(ac).setVisible(true);
             }
         });
     }

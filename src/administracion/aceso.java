@@ -5,6 +5,7 @@
  */
 package administracion;
 
+import entidades.acceso;
 import javax.swing.JOptionPane;
 
 /**
@@ -114,12 +115,14 @@ public class aceso extends javax.swing.JFrame {
         }else{
             nivel = "2";
         }
-            
+        
+        acceso ac = new acceso(this.codigoTXT.getText(),nivel,this.usuarioTXT.getText(),this.contraTXT.getText());
+
         if(this.usuarioTXT.getText().isEmpty() || this.contraTXT.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
         }else{
             
-            Agregar a = new Agregar();
+            Agregar a = new Agregar(ac);
             a.setVisible(true);
             this.dispose();
         }
