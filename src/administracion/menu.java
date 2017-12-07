@@ -238,7 +238,9 @@ public class menu extends javax.swing.JFrame {
     }//GEN-LAST:event_salirLBMouseClicked
 
     private void buscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBTNActionPerformed
-        // TODO add your handling code here:
+        Buscar b = new Buscar();
+        b.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_buscarBTNActionPerformed
 
     private void agregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBTNActionPerformed
