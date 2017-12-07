@@ -5,16 +5,26 @@
  */
 package administracion;
 
+import static java.lang.Double.parseDouble;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author je_pa
  */
 public class Buscar extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Buscar
-     */
+    
+    MySQL db = new MySQL();
+    
     public Buscar() {
+        try{
+            db.MySQLConnection();
+        }
+        catch(Exception e){
+            
+        }
+        
+        
         initComponents();
     }
 
@@ -27,21 +37,63 @@ public class Buscar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        buscarBTN = new javax.swing.JButton();
+        codigoTXT = new javax.swing.JTextField();
+        sexoCB = new javax.swing.JComboBox<>();
+        civilCB = new javax.swing.JComboBox<>();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buscarBTN.setText("BUSCAR");
+        buscarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBTNActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 110, 40));
+
+        codigoTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoTXTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(codigoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 370, 70));
+
+        sexoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        getContentPane().add(sexoCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 140, 50));
+
+        civilCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado", "Divorciado", "Viudo", "Acompañado" }));
+        getContentPane().add(civilCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 130, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void codigoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoTXTActionPerformed
+
+    private void buscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBTNActionPerformed
+        String codigo = codigoTXT.getText();
+        String sexo = sexoCB.getSelectedItem().toString();
+        String civil = civilCB.getSelectedItem().toString();
+        
+        String cargo = codigoTXT.getText();
+        
+        //double nota = parseDouble(codigoTXT.getText());
+        //db.buscarEmpleado(codigo);
+        //db.buscarSexo(sexo);
+        //db.buscarCivil(civil);
+        
+        
+        db.buscarCargo(cargo);
+        
+        //(JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + db.lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
+        //db.lista.clear();
+        JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + db.lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
+        db.lista.clear();
+        
+    }//GEN-LAST:event_buscarBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +131,9 @@ public class Buscar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarBTN;
+    private javax.swing.JComboBox<String> civilCB;
+    private javax.swing.JTextField codigoTXT;
+    private javax.swing.JComboBox<String> sexoCB;
     // End of variables declaration//GEN-END:variables
 }

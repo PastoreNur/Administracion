@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ public class MySQL {
     //NIVEL DE ACCESO
     public static int acceso;
     
+    public ArrayList<String> lista = new ArrayList<>();
     
     //PARA DATOS PERSONALES
     public static int ID;
@@ -178,24 +180,132 @@ public class MySQL {
             
         }
     }
-    
-    //PARA INGRESAR EMPLEADO
-    public void ingresarEmpleado(String nombre,String apellido, String sexo, String edad, String DUI, String NIT, String nacio, String tel,String ec, String ts){
+    //PARA BUSCAR ID
+    public void buscarEmpleado(String codigo){
         try{
-            Query = "INSERT INTO datospersonales (nombre, apellido, sexo, edad, DUI, NIT, direccion, nacionalidad, telefono,estado_civil, tipo_sangre) "
-                    + "VALUES("+ nombre +", "+ apellido +", "+ sexo +", "+ edad +", "+ DUI +", "+ NIT +", "+ nacio +", "+ tel +", "+ ec +", "+ ts + " );";
+            Query = "SELECT * FROM `datospersonales` WHERE id_usario = " + codigo + "";
             Statement st = Conexion.createStatement();
-            ResultSet rs = st.executeQuery(Query);
-        }catch(Exception e){
+            java.sql.ResultSet rs;
+            rs = st.executeQuery(Query);
+            if( rs.first() ){
+                JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S", "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "EMPLEADO/S NO ENCONTRADO/S", "BUSQUEDA FALLIFA", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(Exception e){
             
         }
     }
-    //PARA ELIMINAR EMPLEADO(){
-    public void eliminarEmpleado(){
-        
+    //PARA BUSCAR POR SEXO
+    public void buscarSexo(String sexo){
+        try{
+            Query = "SELECT * FROM `datospersonales` WHERE sexo = '" + sexo + "'";
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet rs;
+            rs = st.executeQuery(Query);
+            
+            while( rs.next() ){
+                lista.add("\n NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
+                        " NACIONALIDAD: " + rs.getString("nacionalidad") + " EDAD: " + rs.getInt("edad") + "\n\n");
+            }
+            for(int i = 0; i<lista.size();i++){
+                lista.get(i);
+            }
+            
+            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S ", "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            
+        }
     }
-    //PARA BUSCAR EMPLEADO
-    public void buscarEmpleado(){
-        
+    //PARA BUSCAR POR ESTADO CIVIL
+    public void buscarCivil(String civil){
+        try{
+            Query = "SELECT * FROM `datospersonales` WHERE estado_civil = '" + civil + "'";
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet rs;
+            rs = st.executeQuery(Query);
+            
+            while( rs.next() ){
+                lista.add("\n NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
+                        " NACIONALIDAD: " + rs.getString("nacionalidad") + " EDAD: " + rs.getInt("edad") + "\n\n");
+            }
+            for(int i = 0; i<lista.size();i++){
+                lista.get(i);
+            }
+            
+            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S ", "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e){
+            
+        }
     }
+    //BUSQUEDA POR NOTA ALCANZADA
+    public void buscarNota(double nota){
+        try{
+            // PARA NOTA
+            int ID = 0;
+            Query = "SELECT * FROM `desempeño` WHERE nota = " + nota + "";
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet rs;
+            rs = st.executeQuery(Query);
+            
+            if(rs.first()){
+                lista.add("\n NOTA ALCANZADA: " + rs.getDouble("nota"));
+                ID = rs.getInt("id_usuario");
+            }
+            
+            Query1 = "SELECT * FROM `datospersonales` WHERE id_usuario = '" + ID + "'";
+            Statement st1 = Conexion.createStatement();
+            java.sql.ResultSet rs1;
+            rs1 = st1.executeQuery(Query1);
+            if(rs1.first()){
+                lista.add("NOMBRE: " + rs1.getString("nombre") + " " + rs1.getString("apellido") + "\n");
+            }
+        }
+        catch(Exception e){   
+        }
+    }
+    //PARA BUSCAR POR EDAD
+    public void buscaEdad(int edad){
+            try{
+                Query = "SELECT * FROM `datospersonales` WHERE edad = " + edad + "";
+                Statement st = Conexion.createStatement();
+                java.sql.ResultSet rs;
+                rs = st.executeQuery(Query);
+                while( rs.next()){
+                    lista.add("\n NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
+                        " NACIONALIDAD: " + rs.getString("nacionalidad") + " EDAD: " + rs.getInt("edad") + "\n\n");
+                }
+            }
+            catch(Exception e){
+            }
+    }
+    //PARA BUSCAR POR CARGO ACTUAL
+    public void buscarCargo(String cargo){
+        try{
+            int ID1 = 0;
+            Query = "SELECT * FROM `admision` WHERE cargo_inicial = '" + cargo + "'";
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet rs;
+            rs = st.executeQuery(Query);
+            if( rs.first() ){
+                lista.add("\n CARGO INICIAL: " + rs.getString("cargo_inicial"));
+                ID1 = rs.getInt("id_usario");
+            }
+            
+            Query1 = "SELECT * FROM `datospersonales` WHERE id_usuario = " + ID1 + "";
+            Statement st1 = Conexion.createStatement();
+            java.sql.ResultSet rs1;
+            rs1 = st1.executeQuery(Query1);
+            if( rs1.first() ){
+                lista.add("NOMBRE: " + rs1.getString("nombre") + " " + rs1.getString("apellido") + "\n" +
+                        "AREA: " + rs1.getString("area") + " SALARIO: $" + rs1.getDouble("salario"));
+            }
+        }
+        catch(Exception e){
+        }
+    }
+    
 }
