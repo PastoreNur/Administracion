@@ -130,7 +130,7 @@ public class Buscar extends javax.swing.JFrame {
         nombreTXT = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         mostrarTBL = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        eliminarBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -140,6 +140,8 @@ public class Buscar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         notaTXT = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        eliminarTXT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -182,26 +184,23 @@ public class Buscar extends javax.swing.JFrame {
 
         mostrarTBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(mostrarTBL);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 950, 450));
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        eliminarBTN.setText("Eliminar");
+        eliminarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                eliminarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 550, 90, 30));
+        getContentPane().add(eliminarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 90, 30));
 
         jLabel1.setText("Estado civil:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
@@ -233,6 +232,15 @@ public class Buscar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(notaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 50, 30));
+
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 570, 90, 30));
+        getContentPane().add(eliminarTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -283,7 +291,19 @@ public class Buscar extends javax.swing.JFrame {
         mostrar();
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void eliminarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBTNActionPerformed
+    String sql = "DELETE * FROM acceso ac, admision ad, antecedentes ant, datospersonales dat, desempeño des WHERE ac.id_usuario = "+ eliminarTXT.getText() +" AND "
+            + " ad.id_usuario = "+ eliminarTXT.getText() +" AND dat.id_usuario = "+ eliminarTXT.getText() +" AND des.id_usuario = "+ eliminarTXT.getText() +" AND ant.id_usuario = "+ eliminarTXT.getText() +"" ;
+        
+        
+    }//GEN-LAST:event_eliminarBTNActionPerformed
+
+    private void notaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notaTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notaTXTActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
         try{
         menu menu = new menu();    
         menu.setVisible(true);
@@ -292,11 +312,7 @@ public class Buscar extends javax.swing.JFrame {
         }
         
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void notaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notaTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_notaTXTActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,7 +355,9 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> civilCB;
     private javax.swing.JTextField codigoTXT;
     private javax.swing.JTextField edadTXT;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton eliminarBTN;
+    private javax.swing.JTextField eliminarTXT;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
