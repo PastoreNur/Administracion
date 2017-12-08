@@ -63,10 +63,10 @@ public class consulta{
             Statement st = Conexion.createStatement();
             java.sql.ResultSet rs;
             rs = st.executeQuery(Query);
-            while( rs.next()){
-                i++;
+            if( rs.last()){
+                tam = rs.getInt("id_usuario");
             }
-            tam = i;
+            
             System.out.println(i);
         }
         catch(Exception e){

@@ -228,7 +228,7 @@ public class Agregar extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);    
             
         }else{
-            
+            con.tam();
             con.agregar_dp(nombre, apellido, sexo, edad, DUI, NIT, direc, nacio, tel, civil, sangre);
             Antecedentesagregar ag = new Antecedentesagregar(); 
             ag.setVisible(true);

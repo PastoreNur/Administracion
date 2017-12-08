@@ -35,6 +35,7 @@ import static administracion.MySQL.ultimoCargo;
 import static administracion.MySQL.ultimoJefe;
 import static administracion.MySQL.ultimoSueldo;
 import java.awt.BorderLayout;
+import java.sql.SQLException;
 
 /**
  *
@@ -43,15 +44,16 @@ import java.awt.BorderLayout;
 public class menu extends javax.swing.JFrame {
     MySQL db = new MySQL();
     
-    public menu() {
+    public menu() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        db.informacion();
         int a = acceso;
         
         buscarBTN.setVisible(false);
         eliminarBTN.setVisible(false);
         agregarBTN.setVisible(false);
+        nombreLB.setText(nombre + " " + apellido);
         
         if(a == 2){
             buscarBTN.setVisible(true);
@@ -79,6 +81,9 @@ public class menu extends javax.swing.JFrame {
         agregarBTN = new javax.swing.JButton();
         eliminarBTN = new javax.swing.JButton();
         datosPN = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        nombreLB = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,15 +201,44 @@ public class menu extends javax.swing.JFrame {
 
         datosPN.setBackground(new java.awt.Color(51, 51, 51));
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("BIENVENIDO");
+
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("¿QUE DESEA HACER?");
+
+        nombreLB.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        nombreLB.setForeground(new java.awt.Color(255, 255, 255));
+        nombreLB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombreLB.setText("NOMBRE:");
+
         javax.swing.GroupLayout datosPNLayout = new javax.swing.GroupLayout(datosPN);
         datosPN.setLayout(datosPNLayout);
         datosPNLayout.setHorizontalGroup(
             datosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosPNLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(datosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(217, 217, 217))
+            .addGroup(datosPNLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(nombreLB, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         datosPNLayout.setVerticalGroup(
             datosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(datosPNLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nombreLB, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         getContentPane().add(datosPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 710, 380));
@@ -338,7 +372,12 @@ public class menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menu().setVisible(true);
+                try{
+                new menu().setVisible(true);    
+                }catch(Exception e){
+                    
+                }
+                
             }
         });
     }
@@ -353,6 +392,9 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton desempeñoBTN;
     private javax.swing.JButton eliminarBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel nombreLB;
     private javax.swing.JLabel salirLB;
     // End of variables declaration//GEN-END:variables
 }

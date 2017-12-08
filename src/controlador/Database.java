@@ -26,11 +26,13 @@ public class Database {
         Connection cn=getConexion();
         Statement st;
         ResultSet datos=null;
-        try{
+        try{    
             st=cn.createStatement();
             datos=st.executeQuery(Consulta);            
         }
-        catch(Exception e){ System.out.print(e.toString());}
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
         return datos;
-    }    
+    }
 }

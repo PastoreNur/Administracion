@@ -137,6 +137,12 @@ public class Admisionagregar extends javax.swing.JFrame {
                 con.MySQLConnection();
                 con.tam();
                 con.agregar_admision(fecha, cargo, salario, jefe, area, contrato);
+                
+                this.setVisible(false);
+                login login = new login();
+                login.setVisible(true);
+                
+                
             } catch (Exception ex) {
                 Logger.getLogger(Admisionagregar.class.getName()).log(Level.SEVERE, null, ex);
             }
