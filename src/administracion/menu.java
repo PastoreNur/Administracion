@@ -51,14 +51,17 @@ public class menu extends javax.swing.JFrame {
         int a = acceso;
         
         buscarBTN.setVisible(false);
-        eliminarBTN.setVisible(false);
         agregarBTN.setVisible(false);
+        antecedentesBTN.setVisible(false);
+        admisionBTN.setVisible(false);
+        
         nombreLB.setText(nombre + " " + apellido);
         
         if(a == 2){
             buscarBTN.setVisible(true);
-            eliminarBTN.setVisible(true);
             agregarBTN.setVisible(true);
+            antecedentesBTN.setVisible(true);
+            admisionBTN.setVisible(true);
         }
         
     }
@@ -79,7 +82,6 @@ public class menu extends javax.swing.JFrame {
         admisionBTN = new javax.swing.JButton();
         buscarBTN = new javax.swing.JButton();
         agregarBTN = new javax.swing.JButton();
-        eliminarBTN = new javax.swing.JButton();
         datosPN = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -104,7 +106,7 @@ public class menu extends javax.swing.JFrame {
                 datosBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(datosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 130, 70));
+        getContentPane().add(datosBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 130, 70));
 
         salirLB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar X.png"))); // NOI18N
         salirLB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -113,7 +115,7 @@ public class menu extends javax.swing.JFrame {
                 salirLBMouseClicked(evt);
             }
         });
-        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, -1));
+        getContentPane().add(salirLB, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 0, -1, -1));
 
         antecedentesBTN.setBackground(new java.awt.Color(102, 102, 102));
         antecedentesBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
@@ -127,7 +129,7 @@ public class menu extends javax.swing.JFrame {
                 antecedentesBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(antecedentesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 130, 70));
+        getContentPane().add(antecedentesBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 130, 70));
 
         desempeñoBTN.setBackground(new java.awt.Color(102, 102, 102));
         desempeñoBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
@@ -159,7 +161,7 @@ public class menu extends javax.swing.JFrame {
 
         buscarBTN.setBackground(new java.awt.Color(204, 204, 204));
         buscarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
-        buscarBTN.setText("BUSCAR");
+        buscarBTN.setText("BUSCAR EMPLEADO");
         buscarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         buscarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarBTN.setFocusable(false);
@@ -169,11 +171,11 @@ public class menu extends javax.swing.JFrame {
                 buscarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 80, 60));
+        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 140, 60));
 
         agregarBTN.setBackground(new java.awt.Color(204, 204, 204));
         agregarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
-        agregarBTN.setText("AGREGAR");
+        agregarBTN.setText("AGREGAR EMPLEADO");
         agregarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
         agregarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregarBTN.setFocusable(false);
@@ -183,21 +185,7 @@ public class menu extends javax.swing.JFrame {
                 agregarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(agregarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 80, 60));
-
-        eliminarBTN.setBackground(new java.awt.Color(204, 204, 204));
-        eliminarBTN.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
-        eliminarBTN.setText("ELIMINAR");
-        eliminarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
-        eliminarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eliminarBTN.setFocusable(false);
-        eliminarBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        eliminarBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarBTNActionPerformed(evt);
-            }
-        });
-        getContentPane().add(eliminarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 80, 60));
+        getContentPane().add(agregarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 140, 60));
 
         datosPN.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -244,13 +232,17 @@ public class menu extends javax.swing.JFrame {
         getContentPane().add(datosPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 710, 380));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo1.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 930, 660));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 940, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void admisionBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admisionBTNActionPerformed
         admicion a = new admicion();
+        tablaAdmision ad = new tablaAdmision();
+        ad.setVisible(true);
+        this.setVisible(false);
+        
         a.setSize(700,370);
         datosPN.removeAll();
         datosPN.add(a, BorderLayout.CENTER);
@@ -284,12 +276,12 @@ public class menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_agregarBTNActionPerformed
 
-    private void eliminarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarBTNActionPerformed
-
     private void antecedentesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antecedentesBTNActionPerformed
         antecedentes a = new antecedentes();
+        tablaAntecedentes ant= new tablaAntecedentes();
+        ant.setVisible(true);
+        this.setVisible(false);
+        
         a.setSize(700,370);
         datosPN.removeAll();
         datosPN.add(a, BorderLayout.CENTER);
@@ -390,7 +382,6 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton datosBTN;
     public static javax.swing.JPanel datosPN;
     private javax.swing.JButton desempeñoBTN;
-    private javax.swing.JButton eliminarBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

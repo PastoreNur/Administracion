@@ -142,6 +142,7 @@ public class Buscar extends javax.swing.JFrame {
         notaTXT = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         eliminarTXT = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -161,7 +162,7 @@ public class Buscar extends javax.swing.JFrame {
                 buscarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 100, 30));
+        getContentPane().add(buscarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 100, 40));
 
         codigoTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,37 +195,38 @@ public class Buscar extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 950, 450));
 
-        eliminarBTN.setText("Eliminar");
+        eliminarBTN.setText("ELIMINAR");
         eliminarBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarBTNActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 570, 90, 30));
+        getContentPane().add(eliminarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 550, 110, 30));
 
-        jLabel1.setText("Estado civil:");
+        jLabel1.setText("ESTADO CIVIL:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        jLabel2.setText("Sexo:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+        jLabel2.setText("SEXO:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
-        jLabel3.setText("Nota:");
+        jLabel3.setText("NOTA:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
-        jLabel4.setText("Cargo:");
+        jLabel4.setText("CARGO");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
-        jLabel5.setText("Nombre:");
+        jLabel5.setText("NOMBRE:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
-        jLabel6.setText("Edad:");
+        jLabel6.setText("EDAD:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
-        jLabel7.setText("Sueldo:");
+        jLabel7.setText("SUELDO:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
 
-        jLabel8.setText("Codigo:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setText("CODIGO DEL EMPLEADO A ELMINAR (ID):");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 230, 30));
 
         notaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,14 +235,17 @@ public class Buscar extends javax.swing.JFrame {
         });
         getContentPane().add(notaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 50, 30));
 
-        jButton2.setText("Cancelar");
+        jButton2.setText("MENU");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 570, 90, 30));
-        getContentPane().add(eliminarTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 120, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 540, 120, 40));
+        getContentPane().add(eliminarTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 120, 30));
+
+        jLabel9.setText("CODIGO DE EMPLEADO(ID)");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -292,8 +297,8 @@ public class Buscar extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void eliminarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBTNActionPerformed
-    String sql = "DELETE * FROM acceso ac, admision ad, antecedentes ant, datospersonales dat, desempeño des WHERE ac.id_usuario = "+ eliminarTXT.getText() +" AND "
-            + " ad.id_usuario = "+ eliminarTXT.getText() +" AND dat.id_usuario = "+ eliminarTXT.getText() +" AND des.id_usuario = "+ eliminarTXT.getText() +" AND ant.id_usuario = "+ eliminarTXT.getText() +"" ;
+    String sql = "DELETE * FROM acceso ac, admision ad, antecedentes ant, datospersonales dat, desempeño des WHERE ac.id_usuario = '"+ eliminarTXT.getText() +"' AND "
+            + "   dat.id_usuario = '"+ eliminarTXT.getText() +"' AND ad.id_usario = '"+ eliminarTXT.getText() +"' AND des.id_usuario = '"+ eliminarTXT.getText() +"' AND ant.id_usuario = '"+ eliminarTXT.getText() +"'";
         
         
     }//GEN-LAST:event_eliminarBTNActionPerformed
@@ -366,6 +371,7 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable mostrarTBL;
     private javax.swing.JTextField nombreTXT;

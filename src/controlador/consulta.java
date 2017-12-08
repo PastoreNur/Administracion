@@ -46,7 +46,6 @@ public class consulta{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Conexion = DriverManager.getConnection("jdbc:mysql://mysql7001.site4now.net:3306/db_a2ee9e_admin", "a2ee9e_admin", "rmjp1234");
-            JOptionPane.showMessageDialog(null, "Se ha iniciado la conexión");
         }
         catch (ClassNotFoundException ex) {
             Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);

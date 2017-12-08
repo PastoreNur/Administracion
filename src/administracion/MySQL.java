@@ -65,7 +65,6 @@ public class MySQL {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Conexion = DriverManager.getConnection("jdbc:mysql://mysql7001.site4now.net:3306/db_a2ee9e_admin", "a2ee9e_admin", "rmjp1234");
-            JOptionPane.showMessageDialog(null, "Se ha iniciado la conexión");
         }
         catch (ClassNotFoundException ex) {
             Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,6 +93,7 @@ public class MySQL {
             if( rs.first() ){
                 ID = rs.getInt("id_usuario");
                 acceso = rs.getInt("nivel_acceso");
+                JOptionPane.showMessageDialog(null, "BIENVENIDO USUARIO", "BIENBENIDO", JOptionPane.INFORMATION_MESSAGE);
                 menu m = new menu();
                 m.setVisible(true);
                 corr = true;
@@ -129,7 +129,6 @@ public class MySQL {
                 tel = rs.getString("telefono");
                 estado = rs.getString("estado_civil");
                 tipo = rs.getString("tipo_sangre");
-                System.out.println(nombre + apellido + sexo+edad+dui+nit+direccion+nacio+tel+estado+tipo);
             }
             
             //PARA ANTECEDENTES
@@ -143,7 +142,6 @@ public class MySQL {
                 ultimoJefe = rs1.getString("jefe_inmediato");
                 ultimoSueldo = rs1.getDouble("ultimo_sueldo");
                 remuneracion = rs1.getDouble("remuneracion");
-                System.out.println(ultimaEmpresa+ultimoCargo+jefe+ultimoSueldo+remuneracion);
             }
             
             //PARA ADMISION
@@ -159,7 +157,6 @@ public class MySQL {
                 jefe = rs2.getString("jefe");
                 area = rs2.getString("area");
                 contrato =  rs2.getString("contrato");
-                System.out.println(fechaContrato + cargo + salario + codigo + jefe + area + contrato);
             }
             //PARA DESEMPEÑO
             Query3 = "SELECT * FROM desempeño WHERE id_usuario='" + ID +"'";
@@ -172,145 +169,11 @@ public class MySQL {
                 fecha = rs3.getString("ultima_fecha");
                 nota = rs3.getDouble("nota");
                 remuneracionD = rs3.getDouble("remuneracion");
-                System.out.println(habilidades + cargoActual + fecha +nota + remuneracionD);
             }
             
         }
         catch(Exception e){
             
-        }
-    }
-    //PARA BUSCAR ID
-    public void buscarEmpleado(int codigo){
-        try{
-            Query = "SELECT * FROM `datospersonales` WHERE id_usuario = " + codigo + "";
-            Statement st = Conexion.createStatement();
-            java.sql.ResultSet rs;
-            rs = st.executeQuery(Query);
-            if( rs.first() ){
-                lista.add("NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
-                        "EDAD:  " + rs.getString("edad") + "  NACIONALIDAD: " +  rs.getString("nacionalidad"));
-            }else{
-                JOptionPane.showMessageDialog(null, "EMPLEADO/S NO ENCONTRADO/S", "BUSQUEDA FALLIFA", JOptionPane.ERROR_MESSAGE);
-            }
-            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-            lista.clear();
-        }
-        catch(Exception e){
-            
-        }
-    }
-    //PARA BUSCAR POR SEXO
-    public void buscarSexo(String sexo){
-        try{
-            Query = "SELECT * FROM `datospersonales` WHERE sexo = '" + sexo + "'";
-            Statement st = Conexion.createStatement();
-            java.sql.ResultSet rs;
-            rs = st.executeQuery(Query);
-            
-            while( rs.next() ){
-                lista.add("\n NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
-                        " NACIONALIDAD: " + rs.getString("nacionalidad") + " EDAD: " + rs.getInt("edad") + "\n\n");
-            }
-            for(int i = 0; i<lista.size();i++){
-                lista.get(i);
-            }
-            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-            lista.clear();
-            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S ", "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-        }
-        catch(Exception e){
-            
-        }
-    }
-    //PARA BUSCAR POR ESTADO CIVIL
-    public void buscarCivil(String civil){
-        try{
-            Query = "SELECT * FROM `datospersonales` WHERE estado_civil = '" + civil + "'";
-            Statement st = Conexion.createStatement();
-            java.sql.ResultSet rs;
-            rs = st.executeQuery(Query);
-            
-            while( rs.next() ){
-                lista.add("\n NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
-                        " NACIONALIDAD: " + rs.getString("nacionalidad") + " EDAD: " + rs.getString("edad") + "\n\n");
-            }
-            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-            lista.clear();
-        }
-        catch(Exception e){
-            
-        }
-    }
-    //BUSQUEDA POR NOTA ALCANZADA
-    public void buscarNota(String nota){
-        try{
-            // PARA NOTA
-            String ID = "";
-            Query = "SELECT * FROM `desempeño` WHERE nota = " + nota + "";
-            Statement st = Conexion.createStatement();
-            java.sql.ResultSet rs;
-            rs = st.executeQuery(Query);
-            
-            if(rs.first()){
-                lista.add("\n NOTA ALCANZADA: " + rs.getString("nota"));
-                ID = rs.getString("id_usuario");
-            }
-            
-            Query1 = "SELECT * FROM `datospersonales` WHERE id_usuario = '" + ID + "'";
-            Statement st1 = Conexion.createStatement();
-            java.sql.ResultSet rs1;
-            rs1 = st1.executeQuery(Query1);
-            if(rs1.first()){
-                lista.add("NOMBRE: " + rs1.getString("nombre") + " " + rs1.getString("apellido") + "\n");
-            }
-            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-            lista.clear();
-        }
-        catch(Exception e){   
-        }
-    }
-    //PARA BUSCAR POR EDAD
-    public void buscaEdad(String edad){
-            try{
-                Query = "SELECT * FROM `datospersonales` WHERE edad = " + edad + "";
-                Statement st = Conexion.createStatement();
-                java.sql.ResultSet rs;
-                rs = st.executeQuery(Query);
-                while( rs.next()){
-                    lista.add("\n NOMBRE: " + rs.getString("nombre") + " " + rs.getString("apellido") + "\n" +
-                        " NACIONALIDAD: " + rs.getString("nacionalidad") + " EDAD: " + rs.getString("edad") + "\n\n");
-                }
-                JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-                lista.clear();
-            }
-            catch(Exception e){
-            }
-    }
-    //PARA BUSCAR POR CARGO ACTUAL
-    public void buscarCargo(String cargo){
-        try{
-            String ID = "";
-            Query = "SELECT * FROM `desempeño` WHERE cargo_actual = '" + cargo + "'";
-            Statement st = Conexion.createStatement();
-            java.sql.ResultSet rs;
-            rs = st.executeQuery(Query);
-            if( rs.first() ){
-                ID = rs.getString("id_usuario");
-                lista.add("\n CARGO ACTUAL: " + rs.getString("cargo_actual") + ID);
-            }
-            
-            Query1 = "SELECT * FROM `datospersonales` WHERE id_usuario = '" + ID + "'";
-            Statement st1 = Conexion.createStatement();
-            java.sql.ResultSet rs1;
-            rs1 = st1.executeQuery(Query1);
-            if(rs1.first()){
-                lista.add("NOMBRE: " + rs1.getString("nombre") + " " + rs1.getString("apellido") + "\n");
-            }
-            JOptionPane.showMessageDialog(null, "EMPLEADO/S ENCONTRADO/S \n" + lista , "BUSQUEDA", JOptionPane.INFORMATION_MESSAGE);
-            lista.clear();
-        }
-        catch(Exception e){
         }
     }
     

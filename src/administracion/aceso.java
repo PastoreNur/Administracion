@@ -36,12 +36,10 @@ public class aceso extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         usuarioTXT = new javax.swing.JTextField();
-        contraTXT = new javax.swing.JTextField();
-        codigoTXT = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         nivelCB = new javax.swing.JComboBox<>();
         siguienteBTN = new javax.swing.JButton();
+        contraTXT = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -61,25 +59,6 @@ public class aceso extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 180, 20));
         jPanel1.add(usuarioTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 180, 40));
 
-        contraTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraTXTActionPerformed(evt);
-            }
-        });
-        jPanel1.add(contraTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 180, 40));
-
-        codigoTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoTXTActionPerformed(evt);
-            }
-        });
-        jPanel1.add(codigoTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 180, 40));
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("CODIGO DE TRABAJADOR:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 210, -1));
-
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CONTRASEÑA:");
@@ -95,19 +74,12 @@ public class aceso extends javax.swing.JFrame {
             }
         });
         jPanel1.add(siguienteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 140, 40));
+        jPanel1.add(contraTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 180, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void contraTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contraTXTActionPerformed
-
-    private void codigoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codigoTXTActionPerformed
 
     private void siguienteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBTNActionPerformed
         String nivel = nivelCB.getSelectedItem().toString();
@@ -173,9 +145,7 @@ public class aceso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField codigoTXT;
-    public javax.swing.JTextField contraTXT;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JPasswordField contraTXT;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
